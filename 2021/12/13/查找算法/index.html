@@ -3,8 +3,8 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="aboutme, c++,c,数据结构,linux,html,css,mysql,learning">
-    <meta name="description" content="分享知识，分享娱乐，分享学习资源">
+    <meta name="keywords" content="查找算法, c++,c,数据结构,linux,html,css,mysql,learning">
+    <meta name="description" content="几种查找算法的实现">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>aboutme | mata的博客</title>
+    <title>查找算法 | mata的博客</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/libs/awesome/css/all.min.css">
@@ -487,12 +487,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">aboutme</h1>
+                    <h1 class="description center-align post-title">查找算法</h1>
                 </div>
             </div>
         </div>
@@ -606,12 +606,29 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/c/">
+                                <span class="chip bg-color">c</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                                <span class="chip bg-color">数据结构</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                数据结构
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -620,28 +637,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-12-08
+                    2021-12-13
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-12-08
+                    2021-12-15
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1
+                    721
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -661,7 +678,85 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="hhh"><a href="#hhh" class="headerlink" title="hhh"></a>hhh</h1>
+                <h2 id="1、顺序表查找"><a href="#1、顺序表查找" class="headerlink" title="1、顺序表查找"></a>1、顺序表查找</h2><h3 id="顺序表查找算法"><a href="#顺序表查找算法" class="headerlink" title="顺序表查找算法"></a>顺序表查找算法</h3><p>这个很简单，就是从下标0开始逐个比较，值相同就返回下标。。</p>
+<pre class="line-numbers language-c"><code class="language-c">
+<span class="token keyword">int</span> <span class="token function">Sequential_Search</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> key<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+	<span class="token punctuation">{</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> key<span class="token punctuation">)</span>
+			<span class="token keyword">return</span> i<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="顺序表查找优化"><a href="#顺序表查找优化" class="headerlink" title="顺序表查找优化"></a>顺序表查找优化</h3><p>在上个算法里需要比较两次，分别是i &lt; n 和a[i]==key，很显然，i &lt; n的比较其实可以去掉，改进算法如下：</p>
+<pre class="line-numbers language-c"><code class="language-c">
+<span class="token keyword">int</span> <span class="token function">Sequential_Search2</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> key<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	a<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">=</span> key<span class="token punctuation">;</span>         <span class="token comment" spellcheck="true">//在创建数组时，这里创建的数组大小应该>=n+1</span>
+	<span class="token keyword">while</span> <span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">!=</span> key<span class="token punctuation">)</span>
+	<span class="token punctuation">{</span>
+		i<span class="token operator">++</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">==</span> n<span class="token punctuation">)</span>
+	<span class="token punctuation">{</span>
+		<span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+		a<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'\0'</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">else</span> 
+		<span class="token keyword">return</span> i<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这段代码虽然也比较了两次，但显然第二次不在循环内，只做了一次比较，所以几乎可以忽略。</p>
+<p>以上两种比较的时间复杂度都是O(n)。所以需要一个更加高效的算法。</p>
+<h2 id="有序表查找"><a href="#有序表查找" class="headerlink" title="有序表查找"></a>有序表查找</h2><h3 id="折半查找-二分查找"><a href="#折半查找-二分查找" class="headerlink" title="折半查找(二分查找)"></a>折半查找(二分查找)</h3><p>我们查字典也是一种二分查找，我们一般不会从a开始找，一直找到最后，而是先翻开中间的位置，看看是什么字母，如果需要找的字母在左边，那么就再往左翻一半，反之则往右，直到查找到了自己想要的字符。二分查找也是如此。</p>
+<pre class="line-numbers language-c"><code class="language-c">
+<span class="token keyword">int</span> <span class="token function">Binary_Search</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> key<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword">int</span> low <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> high <span class="token operator">=</span> n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> mid <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token keyword">while</span> <span class="token punctuation">(</span>low <span class="token operator">&lt;=</span> high<span class="token punctuation">)</span>
+	<span class="token punctuation">{</span>
+		mid <span class="token operator">=</span> <span class="token punctuation">(</span>low <span class="token operator">+</span> high<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span>a<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> key<span class="token punctuation">)</span>
+			<span class="token keyword">return</span> mid<span class="token punctuation">;</span>
+		<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>a<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> key<span class="token punctuation">)</span>
+			low <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+		<span class="token keyword">else</span>
+			high <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>折半查找对比起线性查找必须要是有序的，但是在不重新插入的情况下，排序只需要排一次，查找却可以查很多次，且折半查找的时间复杂度为log(n)，远远好于O(n);</p>
+<h3 id="效率对比"><a href="#效率对比" class="headerlink" title="效率对比"></a>效率对比</h3><p>我们现在设置一个大小为200000的数组，然后用rand()函数给他们设置从0~100000之间的数，然后在一个循环中查找1000000次，输出用时。(测试代码最后给出);</p>
+<h4 id="顺序查找用时："><a href="#顺序查找用时：" class="headerlink" title="顺序查找用时："></a>顺序查找用时：</h4><p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20211214155408.png"></p>
+<h4 id="二分查找用时："><a href="#二分查找用时：" class="headerlink" title="二分查找用时："></a>二分查找用时：</h4><p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20211214155438.png"><br><br>这效率差距就很大了，差了770多倍</p>
+<h3 id="插值查找"><a href="#插值查找" class="headerlink" title="插值查找"></a>插值查找</h3><pre class="line-numbers language-c"><code class="language-c">
+<span class="token keyword">int</span> <span class="token function">InterpolationSearch</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> key<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword">long</span> <span class="token keyword">long</span> low <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> high <span class="token operator">=</span> n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> mid <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token keyword">while</span> <span class="token punctuation">(</span>low <span class="token operator">&lt;=</span> high<span class="token punctuation">)</span>
+	<span class="token punctuation">{</span>
+		mid <span class="token operator">=</span> low <span class="token operator">+</span> <span class="token punctuation">(</span>high <span class="token operator">-</span> low<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>key <span class="token operator">-</span> a<span class="token punctuation">[</span>low<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>a<span class="token punctuation">[</span>high<span class="token punctuation">]</span> <span class="token operator">-</span> a<span class="token punctuation">[</span>low<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span>a<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> key<span class="token punctuation">)</span>
+			<span class="token keyword">return</span> mid<span class="token punctuation">;</span>
+		<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>a<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> key<span class="token punctuation">)</span>
+			low <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+		<span class="token keyword">else</span>
+			high <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>其实就是把mid = (low + high) / 2 换成 mid = low + (high - low) * (key - a[low]) / (a[high] - a[low])，这样做目前有什么好处我还在研究。。反正经过我测试其效率反而降低了。。</p>
+<h4 id="测试结果如下："><a href="#测试结果如下：" class="headerlink" title="测试结果如下："></a>测试结果如下：</h4><p>现在为了提升对比度，将循环次数提升到10000000次<br><br>二分查找：<br><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20211214160347.png"><br><br>插值查找：<br><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20211214160440.png"><br><br>经过随机出来的数据也都保持着平均水平，不会出现差值过大的情况，所以为什么速度反而慢了暂时未知😔</p>
+<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>
                 
             </div>
             <hr/>
@@ -687,7 +782,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://mata2333.github.io/aboutme/index.html">https://mata2333.github.io/aboutme/index.html</a>
+                    <a href="https://mata2333.github.io/2021/12/13/%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/">https://mata2333.github.io/2021/12/13/%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -724,7 +819,15 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/c/">
+                                    <span class="chip bg-color">c</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                                    <span class="chip bg-color">数据结构</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -1172,34 +1275,50 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/aboutme/index.html">
+                <a href="/2021/12/13/%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/19.jpg" class="responsive-img" alt="aboutme">
+                        <img src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/23.jpg" class="responsive-img" alt="查找算法">
                         
-                        <span class="card-title">aboutme</span>
+                        <span class="card-title">查找算法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            几种查找算法的实现
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-13
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            mata
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                    数据结构
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/c/">
+                        <span class="chip bg-color">c</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="chip bg-color">数据结构</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -1207,37 +1326,60 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/aboutme/index.html">
+                <a href="/2021/12/10/Filter%E6%95%8F%E6%84%9F%E8%AF%8D%E8%BF%87%E6%BB%A4%E5%99%A8/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/19.jpg" class="responsive-img" alt="aboutme">
+                        <img src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/6.jpg" class="responsive-img" alt="Filter敏感词过滤器">
                         
-                        <span class="card-title">aboutme</span>
+                        <span class="card-title">Filter敏感词过滤器</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            使用Filter过滤器替换敏感词、转发
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-10
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            mata
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/javaWeb/" class="post-category">
+                                    javaWeb
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/java/">
+                        <span class="chip bg-color">java</span>
+                    </a>
+                    
+                    <a href="/tags/tomcat-10/">
+                        <span class="chip bg-color">tomcat 10</span>
+                    </a>
+                    
+                    <a href="/tags/maven/">
+                        <span class="chip bg-color">maven</span>
+                    </a>
+                    
+                    <a href="/tags/idea/">
+                        <span class="chip bg-color">idea</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
