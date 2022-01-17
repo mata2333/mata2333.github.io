@@ -3,8 +3,9 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="c语言位运算, c++,c,数据结构,linux,html,css,mysql,learning">
-    <meta name="description" content="我以前写在其他平台做笔记的，现在搬运到自己的小网站里来">
+    <meta name="keywords" content="计算机图形学, c++,c,数据结构,linux,html,css,mysql,learning">
+    <meta name="description" content="Opencv基础1、创建图像并显示    // 500行，400列，类型为CV_8UC3(8位无符号字符型，通道数为3)，每个像素的颜色为(0,0,255),这里的三原色为BGR
+    cv::Mat img(500, 400, CV_8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>c语言位运算 | mata的博客</title>
+    <title>计算机图形学 | mata的博客</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/libs/awesome/css/all.min.css">
@@ -487,12 +488,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">c语言位运算</h1>
+                    <h1 class="description center-align post-title">计算机图形学</h1>
                 </div>
             </div>
         </div>
@@ -608,23 +609,14 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/c/">
-                                <span class="chip bg-color">c</span>
+                            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/">
+                                <span class="chip bg-color">计算机图形学</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/c/" class="post-category">
-                                c
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -633,21 +625,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-12-08
+                    2022-01-15
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-12-10
+                    2022-01-15
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    214
+                    101
                 </div>
                 
 
@@ -674,19 +666,39 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="c语言位运算"><a href="#c语言位运算" class="headerlink" title="c语言位运算"></a>c语言位运算</h2><p><strong>如果有错误出现，欢迎指出</strong></p>
-<p>此内容知识和图片来源：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1pN411Q7et?from=search&amp;seid=13105223701786752559&amp;spm_id_from=333.337.0.0">https://www.bilibili.com/video/BV1pN411Q7et?from=search&amp;seid=13105223701786752559&amp;spm_id_from=333.337.0.0</a></p>
-<p><strong>如图所示为&amp;位运算，其运算过程为全1为1，有0出0，如图所示中a&amp;b=十进制中的2和二进制中的0010</strong></p>
-<p><img src="https://img-blog.csdnimg.cn/bfe5d59fed174b1a9629ae7d59cff2dd.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
-<p><strong>如图所示为|运算，有1出1，全0为0</strong><br><img src="https://img-blog.csdnimg.cn/7a4ad2df13fa47f18415a9ced3480bd4.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_18,color_FFFFFF,t_70,g_se,x_16"></p>
-<p><strong>如图为异或运算，两个数相同则为0，但是一个非0的数与0的异或结果为该数字本身</strong></p>
-<p><img src="https://img-blog.csdnimg.cn/32e0a3ab5d814f9897985d4fbfca52f0.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_19,color_FFFFFF,t_70,g_se,x_16"></p>
-<p><strong>如图为按位取反运算</strong></p>
-<p><img src="https://img-blog.csdnimg.cn/31d95d15af3741a987a169dc095438c3.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_18,color_FFFFFF,t_70,g_se,x_16"></p>
-<p><strong>如图为左移运算，将二进制向左移动指定的位数然后丢弃，后面用0补上，实际上，指定的左移数就是指定原数乘以几个2</strong></p>
-<p><img src="https://img-blog.csdnimg.cn/42eb93a39ed24cf1b345e1c1e5ab8629.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
-<p><strong>右移与左移同理，只是指定右移几位，就是除以几个2</strong></p>
-<p><img src="https://img-blog.csdnimg.cn/0df023013695476493186e252b750821.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
+                <h2 id="Opencv基础"><a href="#Opencv基础" class="headerlink" title="Opencv基础"></a>Opencv基础</h2><h3 id="1、创建图像并显示"><a href="#1、创建图像并显示" class="headerlink" title="1、创建图像并显示"></a>1、创建图像并显示</h3><pre class="line-numbers language-c++"><code class="language-c++">    // 500行，400列，类型为CV_8UC3(8位无符号字符型，通道数为3)，每个像素的颜色为(0,0,255),这里的三原色为BGR
+    cv::Mat img(500, 400, CV_8UC3, cv::Scalar(0, 0, 0));
+    // 显示图像
+    cv::imshow("test", img);
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="2、访问图像上的像素"><a href="#2、访问图像上的像素" class="headerlink" title="2、访问图像上的像素"></a>2、访问图像上的像素</h3><pre class="line-numbers language-c++"><code class="language-c++">img.ptr<cv::Vec3b>(i)[j][0] = 255;
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>将100~100上的颜色修改为白色</p>
+<pre class="line-numbers language-c++"><code class="language-c++">for(int i=0;i<100;i++)
+        for (int j = 0; j < 100; j++)
+        &#123;
+            img.ptr<cv::Vec3b>(i)[j][0] = 255;
+            img.ptr<cv::Vec3b>(i)[j][1] = 255;
+            img.ptr<cv::Vec3b>(i)[j][2] = 255;
+        &#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220115140234.png"></p>
+<h3 id="3、绘制图像"><a href="#3、绘制图像" class="headerlink" title="3、绘制图像"></a>3、绘制图像</h3><h4 id="1、绘制线"><a href="#1、绘制线" class="headerlink" title="1、绘制线"></a>1、绘制线</h4><p>Point类中的坐标轴如下<br><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220115141108.png"><br>函数声明：</p>
+<pre class="line-numbers language-c++"><code class="language-c++">CV_EXPORTS_W void line(InputOutputArray img, 
+                        Point pt1, 
+                        Point pt2, 
+                        const Scalar& color, 
+                        int thickness = 1, 
+                        int lineType = LINE_8, 
+                        int shift = 0)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>参数解释</strong>：<br>img: 要绘制线段的图像。<br>pt1: 线段的起点。<br>pt2: 线段的终点。<br>color: 线段的颜色，通过一个Scalar对象定义。<br>thickness: 线条的宽度。<br>lineType: 线段的类型。可以取值8， 4， 和CV_AA， 分别代表8邻接连接线，4邻接连接线和反锯齿连接线。默认值为8邻接。为了获得更好地效果可以选用CV_AA(采用了高斯滤波)。<br>shift: 坐标点小数点位数。</p>
+<p><strong>使用示例</strong>：</p>
+<pre class="line-numbers language-c++"><code class="language-c++">cv::line(img, cv::Point(1, 1), cv::Point(400, 500), cv::Scalar(0, 0, 255), 5);
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="2、绘制矩形"><a href="#2、绘制矩形" class="headerlink" title="2、绘制矩形"></a>2、绘制矩形</h4><pre class="line-numbers language-c++"><code class="language-c++">    cv::Rect rect(50, 100, 100, 100);// x，y，width，lenth
+    cv::rectangle(img, rect, cv::Scalar(0, 0, 255),-1);//第四个参数控制线的粗细，当它为-1时，就代表矩形被填充
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -713,7 +725,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://mata2333.github.io/2021/12/08/c%E8%AF%AD%E8%A8%80%E4%BD%8D%E8%BF%90%E7%AE%97/">https://mata2333.github.io/2021/12/08/c%E8%AF%AD%E8%A8%80%E4%BD%8D%E8%BF%90%E7%AE%97/</a>
+                    <a href="https://mata2333.github.io/2022/01/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/">https://mata2333.github.io/2022/01/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -751,8 +763,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/c/">
-                                    <span class="chip bg-color">c</span>
+                                <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/">
+                                    <span class="chip bg-color">计算机图形学</span>
                                 </a>
                             
                         </div>
@@ -1201,33 +1213,29 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/12/08/Linux%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">
+                <a href="/2022/01/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C1/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/19.jpg" class="responsive-img" alt="Linux学习(一):文件操作">
+                        <img src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/11.jpg" class="responsive-img" alt="计算机网络第一章">
                         
-                        <span class="card-title">Linux学习(一):文件操作</span>
+                        <span class="card-title">计算机网络第一章</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            我以前写在其他平台做笔记的，现在搬运到自己的小网站里来
+                            
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-08
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-17
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Linux/" class="post-category">
-                                    Linux
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            mata
                             
                         </span>
                     </div>
@@ -1235,12 +1243,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/c/">
-                        <span class="chip bg-color">c</span>
-                    </a>
-                    
-                    <a href="/tags/Linux/">
-                        <span class="chip bg-color">Linux</span>
+                    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+                        <span class="chip bg-color">计算机网络</span>
                     </a>
                     
                 </div>
@@ -1254,33 +1258,29 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/12/08/%E5%9B%BE/">
+                <a href="/2022/01/14/opencv%E5%AD%A6%E4%B9%A0/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/22.jpg" class="responsive-img" alt="图">
+                        <img src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/17.jpg" class="responsive-img" alt="opencv学习">
                         
-                        <span class="card-title">图</span>
+                        <span class="card-title">opencv学习</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            数据库图的结构的存储、打印和遍历，其中对有向图和无向图都做出了实现，对邻接表和邻接矩阵都做出了实现
+                            
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-14
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
-                                    数据结构
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            mata
                             
                         </span>
                     </div>
@@ -1288,12 +1288,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/c/">
-                        <span class="chip bg-color">c++</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-                        <span class="chip bg-color">数据结构</span>
+                    <a href="/tags/python-opencv/">
+                        <span class="chip bg-color">python opencv</span>
                     </a>
                     
                 </div>
