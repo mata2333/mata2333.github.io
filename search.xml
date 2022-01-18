@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>计算机网络第二章</title>
+      <link href="/2022/01/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C2/"/>
+      <url>/2022/01/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C2/</url>
+      
+        <content type="html"><![CDATA[<h2 id="物理层的基本概念"><a href="#物理层的基本概念" class="headerlink" title="物理层的基本概念"></a>物理层的基本概念</h2><p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118105520.png"></p><h2 id="物理层下的传输媒体"><a href="#物理层下的传输媒体" class="headerlink" title="物理层下的传输媒体"></a>物理层下的传输媒体</h2><h3 id="导引型传输媒体"><a href="#导引型传输媒体" class="headerlink" title="导引型传输媒体"></a>导引型传输媒体</h3><h4 id="同轴电缆"><a href="#同轴电缆" class="headerlink" title="同轴电缆"></a>同轴电缆</h4><p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118105813.png"></p><h4 id="双绞线"><a href="#双绞线" class="headerlink" title="双绞线"></a>双绞线</h4><p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118110535.png"></p><h4 id="光纤"><a href="#光纤" class="headerlink" title="光纤"></a>光纤</h4><p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118110806.png"><br><strong>光在光纤中传播的基本原理</strong>:<br><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118111727.png"></p><h4 id="电力线"><a href="#电力线" class="headerlink" title="电力线"></a>电力线</h4><p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118111947.png"></p><h3 id="非导引型传输媒体"><a href="#非导引型传输媒体" class="headerlink" title="非导引型传输媒体"></a>非导引型传输媒体</h3><p><strong>非导引型传输媒体通常采用电磁波来进行传输</strong><br><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118112245.png"><br><strong>国际电信联盟ITU对电磁波频段的划分</strong><br><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118112354.png"><br><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118112422.png"></p><h4 id="无线电波"><a href="#无线电波" class="headerlink" title="无线电波"></a>无线电波</h4><p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118112808.png"></p><h4 id="微波"><a href="#微波" class="headerlink" title="微波"></a>微波</h4><p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118113755.png"></p><h4 id="红外线"><a href="#红外线" class="headerlink" title="红外线"></a>红外线</h4><p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118113925.png"></p><h4 id="可见光"><a href="#可见光" class="headerlink" title="可见光"></a>可见光</h4><p>也就是LIFI的概念，目前还处于实验阶段</p><h4 id="无线电频谱管理机构"><a href="#无线电频谱管理机构" class="headerlink" title="无线电频谱管理机构"></a>无线电频谱管理机构</h4><p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118114327.png"></p><h2 id="传输方式"><a href="#传输方式" class="headerlink" title="传输方式"></a>传输方式</h2><h3 id="串行传输和并行传输"><a href="#串行传输和并行传输" class="headerlink" title="串行传输和并行传输"></a>串行传输和并行传输</h3><p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118114859.png"><br><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118115203.png"></p><h3 id="同步传输和异步传输"><a href="#同步传输和异步传输" class="headerlink" title="同步传输和异步传输"></a>同步传输和异步传输</h3><p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118121924.png"></p><h3 id="单工-半双工-全双工"><a href="#单工-半双工-全双工" class="headerlink" title="单工,半双工,全双工"></a>单工,半双工,全双工</h3><p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118122057.png"></p><h2 id="编码与调制"><a href="#编码与调制" class="headerlink" title="编码与调制"></a>编码与调制</h2><p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118125810.png"><br><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118125924.png"></p><h3 id="常用编码"><a href="#常用编码" class="headerlink" title="常用编码"></a>常用编码</h3><h4 id="不归零编码"><a href="#不归零编码" class="headerlink" title="不归零编码"></a>不归零编码</h4><p>存在同步问题<br><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118130312.png"></p><h4 id="归零编码"><a href="#归零编码" class="headerlink" title="归零编码"></a>归零编码</h4><p>自同步，编码效率低<br><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118130524.png"></p><h4 id="曼彻斯特编码和差分曼彻斯特编码"><a href="#曼彻斯特编码和差分曼彻斯特编码" class="headerlink" title="曼彻斯特编码和差分曼彻斯特编码"></a>曼彻斯特编码和差分曼彻斯特编码</h4><p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118131220.png"><br><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118131344.png"></p><h3 id="调制方法"><a href="#调制方法" class="headerlink" title="调制方法"></a>调制方法</h3><h4 id="基本调制"><a href="#基本调制" class="headerlink" title="基本调制"></a>基本调制</h4><p>![](<a href="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/2022011813154">https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/2022011813154</a><br>8.png)</p><h4 id="混合调制"><a href="#混合调制" class="headerlink" title="混合调制"></a>混合调制</h4><p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118131839.png"><br><strong>正交振幅调制QAM</strong>:<br>这是不使用格雷码的情况，如果要尽量减少错误的话可以采用格雷码的形式<br><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118134202.png"><br>使用格雷码：<br><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118134410.png"></p><h2 id="信道的极限容量"><a href="#信道的极限容量" class="headerlink" title="信道的极限容量"></a>信道的极限容量</h2><h3 id="失真"><a href="#失真" class="headerlink" title="失真"></a>失真</h3><p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118134759.png"></p><h3 id="奈氏准则"><a href="#奈氏准则" class="headerlink" title="奈氏准则"></a>奈氏准则</h3><p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118135231.png"></p><h3 id="香农公式"><a href="#香农公式" class="headerlink" title="香农公式"></a>香农公式</h3><p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118135440.png"></p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118135521.png"></p><h3 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h3><p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118135931.png"><br><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118140857.png"><br><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118141248.png"><br><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118141924.png"><br><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220118142254.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 计算机网络 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 计算机网络 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>计算机网络第一章</title>
       <link href="/2022/01/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C1/"/>
       <url>/2022/01/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C1/</url>
@@ -197,6 +222,31 @@
     
     
     <entry>
+      <title>c语言位运算</title>
+      <link href="/2021/12/08/c%E8%AF%AD%E8%A8%80%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
+      <url>/2021/12/08/c%E8%AF%AD%E8%A8%80%E4%BD%8D%E8%BF%90%E7%AE%97/</url>
+      
+        <content type="html"><![CDATA[<h2 id="c语言位运算"><a href="#c语言位运算" class="headerlink" title="c语言位运算"></a>c语言位运算</h2><p><strong>如果有错误出现，欢迎指出</strong></p><p>此内容知识和图片来源：<a href="https://www.bilibili.com/video/BV1pN411Q7et?from=search&amp;seid=13105223701786752559&amp;spm_id_from=333.337.0.0">https://www.bilibili.com/video/BV1pN411Q7et?from=search&amp;seid=13105223701786752559&amp;spm_id_from=333.337.0.0</a></p><p><strong>如图所示为&amp;位运算，其运算过程为全1为1，有0出0，如图所示中a&amp;b=十进制中的2和二进制中的0010</strong></p><p><img src="https://img-blog.csdnimg.cn/bfe5d59fed174b1a9629ae7d59cff2dd.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"></p><p><strong>如图所示为|运算，有1出1，全0为0</strong><br><img src="https://img-blog.csdnimg.cn/7a4ad2df13fa47f18415a9ced3480bd4.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_18,color_FFFFFF,t_70,g_se,x_16"></p><p><strong>如图为异或运算，两个数相同则为0，但是一个非0的数与0的异或结果为该数字本身</strong></p><p><img src="https://img-blog.csdnimg.cn/32e0a3ab5d814f9897985d4fbfca52f0.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_19,color_FFFFFF,t_70,g_se,x_16"></p><p><strong>如图为按位取反运算</strong></p><p><img src="https://img-blog.csdnimg.cn/31d95d15af3741a987a169dc095438c3.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_18,color_FFFFFF,t_70,g_se,x_16"></p><p><strong>如图为左移运算，将二进制向左移动指定的位数然后丢弃，后面用0补上，实际上，指定的左移数就是指定原数乘以几个2</strong></p><p><img src="https://img-blog.csdnimg.cn/42eb93a39ed24cf1b345e1c1e5ab8629.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"></p><p><strong>右移与左移同理，只是指定右移几位，就是除以几个2</strong></p><p><img src="https://img-blog.csdnimg.cn/0df023013695476493186e252b750821.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> c </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> c </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Linux学习(二):makefile</title>
       <link href="/2021/12/08/Linux%E5%AD%A6%E4%B9%A0(%E4%BA%8C)%EF%BC%9Amakefile/"/>
       <url>/2021/12/08/Linux%E5%AD%A6%E4%B9%A0(%E4%BA%8C)%EF%BC%9Amakefile/</url>
@@ -216,31 +266,6 @@
             <tag> c </tag>
             
             <tag> Linux </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>c语言位运算</title>
-      <link href="/2021/12/08/c%E8%AF%AD%E8%A8%80%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
-      <url>/2021/12/08/c%E8%AF%AD%E8%A8%80%E4%BD%8D%E8%BF%90%E7%AE%97/</url>
-      
-        <content type="html"><![CDATA[<h2 id="c语言位运算"><a href="#c语言位运算" class="headerlink" title="c语言位运算"></a>c语言位运算</h2><p><strong>如果有错误出现，欢迎指出</strong></p><p>此内容知识和图片来源：<a href="https://www.bilibili.com/video/BV1pN411Q7et?from=search&amp;seid=13105223701786752559&amp;spm_id_from=333.337.0.0">https://www.bilibili.com/video/BV1pN411Q7et?from=search&amp;seid=13105223701786752559&amp;spm_id_from=333.337.0.0</a></p><p><strong>如图所示为&amp;位运算，其运算过程为全1为1，有0出0，如图所示中a&amp;b=十进制中的2和二进制中的0010</strong></p><p><img src="https://img-blog.csdnimg.cn/bfe5d59fed174b1a9629ae7d59cff2dd.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"></p><p><strong>如图所示为|运算，有1出1，全0为0</strong><br><img src="https://img-blog.csdnimg.cn/7a4ad2df13fa47f18415a9ced3480bd4.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_18,color_FFFFFF,t_70,g_se,x_16"></p><p><strong>如图为异或运算，两个数相同则为0，但是一个非0的数与0的异或结果为该数字本身</strong></p><p><img src="https://img-blog.csdnimg.cn/32e0a3ab5d814f9897985d4fbfca52f0.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_19,color_FFFFFF,t_70,g_se,x_16"></p><p><strong>如图为按位取反运算</strong></p><p><img src="https://img-blog.csdnimg.cn/31d95d15af3741a987a169dc095438c3.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_18,color_FFFFFF,t_70,g_se,x_16"></p><p><strong>如图为左移运算，将二进制向左移动指定的位数然后丢弃，后面用0补上，实际上，指定的左移数就是指定原数乘以几个2</strong></p><p><img src="https://img-blog.csdnimg.cn/42eb93a39ed24cf1b345e1c1e5ab8629.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"></p><p><strong>右移与左移同理，只是指定右移几位，就是除以几个2</strong></p><p><img src="https://img-blog.csdnimg.cn/0df023013695476493186e252b750821.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> c </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> c </tag>
             
         </tags>
       
