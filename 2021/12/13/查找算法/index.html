@@ -734,8 +734,8 @@
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>折半查找对比起线性查找必须要是有序的，但是在不重新插入的情况下，排序只需要排一次，查找却可以查很多次，且折半查找的时间复杂度为log(n)，远远好于O(n);</p>
 <h3 id="效率对比"><a href="#效率对比" class="headerlink" title="效率对比"></a>效率对比</h3><p>我们现在设置一个大小为200000的数组，然后用rand()函数给他们设置从0~100000之间的数，然后在一个循环中查找1000000次，输出用时。(测试代码最后给出);</p>
-<h4 id="顺序查找用时："><a href="#顺序查找用时：" class="headerlink" title="顺序查找用时："></a>顺序查找用时：</h4><p><img src="http://mata.run/20211214155408.png"></p>
-<h4 id="二分查找用时："><a href="#二分查找用时：" class="headerlink" title="二分查找用时："></a>二分查找用时：</h4><p><img src="http://mata.run/20211214155438.png"><br><br>这效率差距就很大了，差了770多倍</p>
+<h4 id="顺序查找用时："><a href="#顺序查找用时：" class="headerlink" title="顺序查找用时："></a>顺序查找用时：</h4><p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20211214155408.png"></p>
+<h4 id="二分查找用时："><a href="#二分查找用时：" class="headerlink" title="二分查找用时："></a>二分查找用时：</h4><p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20211214155438.png"><br><br>这效率差距就很大了，差了770多倍</p>
 <h3 id="插值查找"><a href="#插值查找" class="headerlink" title="插值查找"></a>插值查找</h3><pre class="line-numbers language-c"><code class="language-c">
 <span class="token keyword">int</span> <span class="token function">InterpolationSearch</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> key<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
@@ -755,7 +755,7 @@
 
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>其实就是把mid = (low + high) / 2 换成 mid = low + (high - low) * (key - a[low]) / (a[high] - a[low])，这样做目前有什么好处我还在研究。。反正经过我测试其效率反而降低了。。</p>
-<h4 id="测试结果如下："><a href="#测试结果如下：" class="headerlink" title="测试结果如下："></a>测试结果如下：</h4><p>现在为了提升对比度，将循环次数提升到10000000次<br><br>二分查找：<br><img src="http://mata.run/20211214160347.png"><br><br>插值查找：<br><img src="http://mata.run/20211214160440.png"><br><br>经过随机出来的数据也都保持着平均水平，不会出现差值过大的情况，所以为什么速度反而慢了暂时未知😔</p>
+<h4 id="测试结果如下："><a href="#测试结果如下：" class="headerlink" title="测试结果如下："></a>测试结果如下：</h4><p>现在为了提升对比度，将循环次数提升到10000000次<br><br>二分查找：<br><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20211214160347.png"><br><br>插值查找：<br><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20211214160440.png"><br><br>经过随机出来的数据也都保持着平均水平，不会出现差值过大的情况，所以为什么速度反而慢了暂时未知😔</p>
 <h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>
                 
             </div>
