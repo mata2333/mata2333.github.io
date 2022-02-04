@@ -26,11 +26,10 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/libs/lightGallery/css/lightgallery.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/css/matery.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/css/my.css">
-
+    <link rel="stylesheet" href="/js/prism/prism.css">
     <script src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
 
@@ -651,14 +650,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4k
+                    4.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    15 分
+                    16 分
                 </div>
                 
 
@@ -672,6 +671,9 @@
         </div>
         <hr class="clearfix">
 
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/libs/prism/prism.css">
         
 
         
@@ -707,80 +709,79 @@
 <h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><p><img src="https://img-blog.csdnimg.cn/e145fb532bb54dcd8c49101def8805ce.png"><br>如图所示，123.txt 文件已经没有任何权限，现在我们想要给用户添加可读和可执行的权限，除了方法一之外还有什么方法呢。我们可以不用chmod u+r 123.txt; chmod u+x 123.txt。而是采取覆盖权限的方法。<br>如图所示，<br><img src="https://img-blog.csdnimg.cn/5385f5edbcca410287147e87c05d11bb.png"><br>可见，u=rx 的意思为用户的权限被r-x覆盖。</p>
 <h4 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h4><p>r—-4，w—-2，x—-1。请记住三个权限所对应的数字<br>所以有：<br>0对应—<br>1对应–x<br>2对应-w-<br>3对应-wx<br>4对应r–<br>5对应r-x<br>6对应rw-<br>7对应rwx<br>由此可以看出，三个权限的排列组合一共有8个，于是我们可以用这些数字来表示所有权限<br>现在，我们有一个没有任何权限的文件123.txt<br><img src="https://img-blog.csdnimg.cn/353b8364863d4497a82c791bfef2116f.png"><br>现在我们想要为它的用户加上可读权限，给它的所属组添加可读可写权限，给它的其他添加所有权限<br>所以现在有  chmod 467 123.txt<br><img src="https://img-blog.csdnimg.cn/a212b9b358cb4edea4a50816e811c94a.png?x-oss-process=image,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>这便是数字法修改权限</p>
 <h3 id="c语言查询文件权限"><a href="#c语言查询文件权限" class="headerlink" title="c语言查询文件权限"></a>c语言查询文件权限</h3><p>我们也可以用c语言的代码来实现查询权限：</p>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre class="line-numbers language-c"><code class="language-c">
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/stat.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/types.h></span></span>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token punctuation">&#123;</span><span class="token operator">%</span> raw <span class="token operator">%</span><span class="token punctuation">&#125;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/stat.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/types.h></span></span>
 
 <span class="token keyword">typedef</span> <span class="token keyword">unsigned</span> <span class="token keyword">int</span> u32<span class="token punctuation">;</span>
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
+<span class="token punctuation">&#123;</span>
     u32 i<span class="token punctuation">,</span> mask <span class="token operator">=</span> <span class="token number">0700</span><span class="token punctuation">;</span>
-    <span class="token keyword">struct</span> stat fileAttribute<span class="token punctuation">;</span>
-    <span class="token keyword">static</span> <span class="token keyword">char</span> <span class="token operator">*</span>filePermissions<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"---"</span><span class="token punctuation">,</span> <span class="token string">"--x"</span><span class="token punctuation">,</span> <span class="token string">"-w-"</span><span class="token punctuation">,</span> <span class="token string">"-wx"</span><span class="token punctuation">,</span> <span class="token string">"r--"</span><span class="token punctuation">,</span> <span class="token string">"r-x"</span><span class="token punctuation">,</span> <span class="token string">"rw-"</span><span class="token punctuation">,</span> <span class="token string">"rwx"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">struct</span> <span class="token class-name">stat</span> fileAttribute<span class="token punctuation">;</span>
+    <span class="token keyword">static</span> <span class="token keyword">char</span> <span class="token operator">*</span>filePermissions<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">"---"</span><span class="token punctuation">,</span> <span class="token string">"--x"</span><span class="token punctuation">,</span> <span class="token string">"-w-"</span><span class="token punctuation">,</span> <span class="token string">"-wx"</span><span class="token punctuation">,</span> <span class="token string">"r--"</span><span class="token punctuation">,</span> <span class="token string">"r-x"</span><span class="token punctuation">,</span> <span class="token string">"rw-"</span><span class="token punctuation">,</span> <span class="token string">"rwx"</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
 
     <span class="token keyword">if</span> <span class="token punctuation">(</span>argc <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
+    <span class="token punctuation">&#123;</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token function">stat</span><span class="token punctuation">(</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>fileAttribute<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
+        <span class="token punctuation">&#123;</span>
             <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s的权限为："</span><span class="token punctuation">,</span> argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span> i<span class="token punctuation">;</span> <span class="token operator">--</span>i<span class="token punctuation">)</span>
-            <span class="token punctuation">{</span>
+            <span class="token punctuation">&#123;</span>
                 <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%3s"</span><span class="token punctuation">,</span> filePermissions<span class="token punctuation">[</span><span class="token punctuation">(</span>fileAttribute<span class="token punctuation">.</span>st_mode <span class="token operator">&amp;</span> mask<span class="token punctuation">)</span> <span class="token operator">>></span> <span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                 mask <span class="token operator">>>=</span> <span class="token number">3</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
+            <span class="token punctuation">&#125;</span>
             <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
     <span class="token keyword">else</span>
         <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"请输入需要查询的文件\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#123;</span><span class="token operator">%</span> endraw <span class="token operator">%</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>编译指令:</p>
-<pre class="line-numbers language-bash"><code class="language-bash">gcc -g filename.c -o filename
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gcc -g filename.c -o filename<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <p>结果如图所示：<br><img src="https://img-blog.csdnimg.cn/b4c1576e52e147a2a8b39a5f3dcde3a8.png"></p>
 <h4 id="代码解析"><a href="#代码解析" class="headerlink" title="代码解析"></a>代码解析</h4><p>在解析之前，需要了解C语言位运算的一些知识，详细可见<a target="_blank" rel="noopener" href="https://blog.csdn.net/m7789456/article/details/120351863">C语言位运算</a><br>这里不做赘述</p>
 <p>main函数中的参数argc和argv是什么意思可以参考这个视频<br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Nx411D7R7?from=search&seid=17402910508511669946&spm_id_from=333.337.0.0">main函数中的参数</a></p>
 <p> fileAttribute.st_mode  —— 代表文件权限 ，如果已经理解上面修改权限的第三种方法，那么应该可以知道，其实在该属性之中权限便是以数字的形式存储。注意在该代码中使用了mask=0700，和mask&gt;&gt;=3操作所以每次的权限对比，都是和7在进行与运算。</p>
 <p>我们逐行分析代码中的for循环部分：<br>首先看第一个循环，即i=3时。<br>fileAttribute.st_mode &amp; mask具体是什么意思呢<br>我们以一个文件为例子，假设该文件的权限为rw- r– -wx<br>那么有<br>| fileAttribute.st_mode: | 6   | 4   | 3   |<br>| ———————- | — | — | — ||<br>| mask:                  | 7   | 0   | 0   |<br>如果你已经知道了位与运算的含义，那么应该清除，6和7的位与运算是先将它们转换为二进制再进行比较。<br>首先看6和7，就是110和111，比较后最终结果仍然是110，然后看后续的比较，可知全部为000。<br>比较过后的结果为110000000，然后再进行右移操作，右移六位，可以得到110。也就是6，filePermissions数组的下标为6时就是rw-。<br>然后mask右移3位，原来的700变为70。再继续同样的操作，直至i=0时。</p>
-<h3 id="c语言查看文件的其他信息"><a href="#c语言查看文件的其他信息" class="headerlink" title="c语言查看文件的其他信息"></a>c语言查看文件的其他信息</h3><pre class="line-numbers language-c"><code class="language-c">
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/stat.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/types.h></span></span>
+<h3 id="c语言查看文件的其他信息"><a href="#c语言查看文件的其他信息" class="headerlink" title="c语言查看文件的其他信息"></a>c语言查看文件的其他信息</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token punctuation">&#123;</span><span class="token operator">%</span> raw <span class="token operator">%</span><span class="token punctuation">&#125;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/stat.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/types.h></span></span>
 
 <span class="token keyword">typedef</span> <span class="token keyword">unsigned</span> <span class="token keyword">int</span> u32<span class="token punctuation">;</span>
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
+<span class="token punctuation">&#123;</span>
     u32 i<span class="token punctuation">,</span> mask <span class="token operator">=</span> <span class="token number">0777</span><span class="token punctuation">;</span>
-    <span class="token keyword">struct</span> stat fileAttribute<span class="token punctuation">;</span>
-    <span class="token keyword">static</span> <span class="token keyword">char</span> <span class="token operator">*</span>filePermissions<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"---"</span><span class="token punctuation">,</span> <span class="token string">"--x"</span><span class="token punctuation">,</span> <span class="token string">"-w-"</span><span class="token punctuation">,</span> <span class="token string">"-wx"</span><span class="token punctuation">,</span> <span class="token string">"r--"</span><span class="token punctuation">,</span> <span class="token string">"r-x"</span><span class="token punctuation">,</span> <span class="token string">"rw-"</span><span class="token punctuation">,</span> <span class="token string">"rwx"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">struct</span> <span class="token class-name">stat</span> fileAttribute<span class="token punctuation">;</span>
+    <span class="token keyword">static</span> <span class="token keyword">char</span> <span class="token operator">*</span>filePermissions<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">"---"</span><span class="token punctuation">,</span> <span class="token string">"--x"</span><span class="token punctuation">,</span> <span class="token string">"-w-"</span><span class="token punctuation">,</span> <span class="token string">"-wx"</span><span class="token punctuation">,</span> <span class="token string">"r--"</span><span class="token punctuation">,</span> <span class="token string">"r-x"</span><span class="token punctuation">,</span> <span class="token string">"rw-"</span><span class="token punctuation">,</span> <span class="token string">"rwx"</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
 
     <span class="token keyword">if</span> <span class="token punctuation">(</span>argc <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
+    <span class="token punctuation">&#123;</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token function">stat</span><span class="token punctuation">(</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>fileAttribute<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
+        <span class="token punctuation">&#123;</span>
             <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s的权限为："</span><span class="token punctuation">,</span> argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span> i<span class="token punctuation">;</span> <span class="token operator">--</span>i<span class="token punctuation">)</span>
-            <span class="token punctuation">{</span>
+            <span class="token punctuation">&#123;</span>
                 <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%3s"</span><span class="token punctuation">,</span> filePermissions<span class="token punctuation">[</span><span class="token punctuation">(</span>fileAttribute<span class="token punctuation">.</span>st_mode <span class="token operator">&amp;</span> mask<span class="token punctuation">)</span> <span class="token operator">>></span> <span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                 mask <span class="token operator">>>=</span> <span class="token number">3</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
+            <span class="token punctuation">&#125;</span>
             <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
             <span class="token keyword">char</span> <span class="token operator">*</span>fileType<span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">S_ISREG</span><span class="token punctuation">(</span>fileAttribute<span class="token punctuation">.</span>st_mode<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 判断是否为普通文件</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">S_ISREG</span><span class="token punctuation">(</span>fileAttribute<span class="token punctuation">.</span>st_mode<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// 判断是否为普通文件</span>
                 fileType <span class="token operator">=</span> <span class="token string">"regular file"</span><span class="token punctuation">;</span>
-            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">S_ISDIR</span><span class="token punctuation">(</span>fileAttribute<span class="token punctuation">.</span>st_mode<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 目录文件</span>
+            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">S_ISDIR</span><span class="token punctuation">(</span>fileAttribute<span class="token punctuation">.</span>st_mode<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// 目录文件</span>
                 fileType <span class="token operator">=</span> <span class="token string">"directory file"</span><span class="token punctuation">;</span>
-            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">S_ISFIFO</span><span class="token punctuation">(</span>fileAttribute<span class="token punctuation">.</span>st_mode<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 管道文件</span>
+            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">S_ISFIFO</span><span class="token punctuation">(</span>fileAttribute<span class="token punctuation">.</span>st_mode<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// 管道文件</span>
                 fileType <span class="token operator">=</span> <span class="token string">"fifo file"</span><span class="token punctuation">;</span>
-            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">S_ISCHR</span><span class="token punctuation">(</span>fileAttribute<span class="token punctuation">.</span>st_mode<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 字符设备文件</span>
+            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">S_ISCHR</span><span class="token punctuation">(</span>fileAttribute<span class="token punctuation">.</span>st_mode<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// 字符设备文件</span>
                 fileType <span class="token operator">=</span> <span class="token string">"character file"</span><span class="token punctuation">;</span>
             <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"文件类型：%s\n"</span><span class="token punctuation">,</span> fileType<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
@@ -792,15 +793,14 @@
             <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"硬链接数：%ld\n"</span><span class="token punctuation">,</span> fileAttribute<span class="token punctuation">.</span>st_nlink<span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"uid：%d\n"</span><span class="token punctuation">,</span> fileAttribute<span class="token punctuation">.</span>st_uid<span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"gid：%d\n"</span><span class="token punctuation">,</span> fileAttribute<span class="token punctuation">.</span>st_gid<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
     <span class="token keyword">else</span>
         <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"请输入需要查询的文件\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#123;</span><span class="token operator">%</span> endraw <span class="token operator">%</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>主要记住里面参数，结构体成员和相应的函数。</strong></p>
 <h3 id="文件查找"><a href="#文件查找" class="headerlink" title="文件查找"></a>文件查找</h3><h4 id="文件名查找"><a href="#文件名查找" class="headerlink" title="文件名查找"></a>文件名查找</h4><p>格式：find 查找目录 -name 文件名<br><img src="https://img-blog.csdnimg.cn/441c33f6084b4471b4586627d605d921.png"><br>如图所示，在FindRoute目录下有两个txt文件和两个.c文件，现在我们在Linux目录下找到FindRoute中的123.txt，过程与结果见下图<br><img src="https://img-blog.csdnimg.cn/27e643f35fcf40cfaa079396ebecd5eb.png"><br>同理，我们再找到所有.c文件，在使用*通配符时需要用\进行转义<br><img src="https://img-blog.csdnimg.cn/7fcdb9e16f39475995f01035d67c6fac.png"><br>查找以0到9开头的文件<br><img src="https://img-blog.csdnimg.cn/a07c1b3b68384bf08c9878afaf0f1763.png?x-oss-process=image,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
 <h4 id="文件大小查找"><a href="#文件大小查找" class="headerlink" title="文件大小查找"></a>文件大小查找</h4><p>查找当前目录大于5k的文件<br><img src="https://img-blog.csdnimg.cn/98e3c35797484ebba38d14f426327785.png"><br>查找当前目录下大于5k 小于 2M的文件<br><img src="https://img-blog.csdnimg.cn/4c7e9044cb924b2e9d3527d2eabdf447.png"></p>
@@ -817,84 +817,82 @@
 <p>这个比喻如果有些不合适的地方，希望知道的人可以帮忙指出。但是缓冲区的大致意思就是在输入输出设备之间，用来存储数据，使得高速设备和低速设备之间可以充分配合，发挥出最佳性能。</p>
 <h4 id="三种缓冲区"><a href="#三种缓冲区" class="headerlink" title="三种缓冲区"></a>三种缓冲区</h4><p>缓冲区有三个典型：<br><strong>1、全缓冲</strong><br>典型代表：对磁盘文件的读写<br><strong>2、行缓冲</strong><br>典型代表：标准输入和标准输出<br><strong>3、无缓冲</strong><br>典型代表：标准错误</p>
 <h4 id="c语言设置缓冲区"><a href="#c语言设置缓冲区" class="headerlink" title="c语言设置缓冲区"></a>c语言设置缓冲区</h4><h5 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h5><p>代码逻辑比较简单，且注释中已经有解释，因此不做赘述</p>
-<pre class="line-numbers language-c"><code class="language-c">
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;errno.h></span> </span><span class="token comment" spellcheck="true">//标准错误相关函数</span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token punctuation">&#123;</span><span class="token operator">%</span> raw <span class="token operator">%</span><span class="token punctuation">&#125;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;errno.h></span> <span class="token comment">//标准错误相关函数</span></span>
 
-<span class="token comment" spellcheck="true">// setbuf(FILE *stream, char* buf); 写入到参数1的输出在参数2的缓冲区中，当参数2的缓冲区满或fflush时，参数2的内容才会写入参数1中</span>
-<span class="token comment" spellcheck="true">// setvbuf(FILE *stream, char* buf, int mode, size_t size); mode指代三种缓冲区，size指代缓冲区大小</span>
+<span class="token comment">// setbuf(FILE *stream, char* buf); 写入到参数1的输出在参数2的缓冲区中，当参数2的缓冲区满或fflush时，参数2的内容才会写入参数1中</span>
+<span class="token comment">// setvbuf(FILE *stream, char* buf, int mode, size_t size); mode指代三种缓冲区，size指代缓冲区大小</span>
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
+<span class="token punctuation">&#123;</span>
     FILE <span class="token operator">*</span>pf<span class="token punctuation">;</span>
     <span class="token keyword">char</span> msg1<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"hello world\n"</span><span class="token punctuation">;</span>
     <span class="token keyword">char</span> msg2<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"hello\nworld"</span><span class="token punctuation">;</span>
     <span class="token keyword">char</span> buff<span class="token punctuation">[</span><span class="token number">128</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//==============================================================================================================</span>
-    <span class="token function">memset</span><span class="token punctuation">(</span>buff<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 清空缓冲区buff</span>
+    <span class="token comment">//==============================================================================================================</span>
+    <span class="token function">memset</span><span class="token punctuation">(</span>buff<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 清空缓冲区buff</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>pf <span class="token operator">=</span> <span class="token function">fopen</span><span class="token punctuation">(</span><span class="token string">"no_buf1.txt"</span><span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
+    <span class="token punctuation">&#123;</span>
         <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"file open failure!\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token function">setbuf</span><span class="token punctuation">(</span>pf<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment" spellcheck="true">// 设置无缓冲</span>
-    <span class="token function">fwrite</span><span class="token punctuation">(</span>msg1<span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> pf<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 将msg1的内容写入pf中，写8个字符，写1次</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">setbuf</span><span class="token punctuation">(</span>pf<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment">// 设置无缓冲</span>
+    <span class="token function">fwrite</span><span class="token punctuation">(</span>msg1<span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> pf<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 将msg1的内容写入pf中，写8个字符，写1次</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"test setbuff(no buff)! check no_buf1.txt\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"now buff data is : %s \n"</span><span class="token punctuation">,</span> buff<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"enter the enter to continue!\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">fclose</span><span class="token punctuation">(</span>pf<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//==============================================================================================================</span>
-    <span class="token function">memset</span><span class="token punctuation">(</span>buff<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 清空缓冲区buff</span>
+    <span class="token comment">//==============================================================================================================</span>
+    <span class="token function">memset</span><span class="token punctuation">(</span>buff<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 清空缓冲区buff</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>pf <span class="token operator">=</span> <span class="token function">fopen</span><span class="token punctuation">(</span><span class="token string">"no_buf2.txt"</span><span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
+    <span class="token punctuation">&#123;</span>
         <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"file open failure!\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token function">setvbuf</span><span class="token punctuation">(</span>pf<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> _IONBF<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 1: 期望缓冲区的文件指针。2：缓冲区的地址。3、缓冲区的类型。4、缓冲区大小</span>
-    <span class="token function">fwrite</span><span class="token punctuation">(</span>msg1<span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> pf<span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment" spellcheck="true">// 将msg1的内容写入pf中，写8个字符，写1次</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">setvbuf</span><span class="token punctuation">(</span>pf<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> _IONBF<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1: 期望缓冲区的文件指针。2：缓冲区的地址。3、缓冲区的类型。4、缓冲区大小</span>
+    <span class="token function">fwrite</span><span class="token punctuation">(</span>msg1<span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> pf<span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment">// 将msg1的内容写入pf中，写8个字符，写1次</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"test setbuff(no buff)! check no_buf2.txt\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"now buff data is : %s \n"</span><span class="token punctuation">,</span> buff<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"enter the enter to continue!\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">fclose</span><span class="token punctuation">(</span>pf<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//===============================================================================================================</span>
-    <span class="token function">memset</span><span class="token punctuation">(</span>buff<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 清空缓冲区buff</span>
+    <span class="token comment">//===============================================================================================================</span>
+    <span class="token function">memset</span><span class="token punctuation">(</span>buff<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 清空缓冲区buff</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>pf <span class="token operator">=</span> <span class="token function">fopen</span><span class="token punctuation">(</span><span class="token string">"l_buf.txt"</span><span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
+    <span class="token punctuation">&#123;</span>
         <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"file open failure!\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token function">setvbuf</span><span class="token punctuation">(</span>pf<span class="token punctuation">,</span> buff<span class="token punctuation">,</span> _IOLBF<span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">// 1: 期望缓冲区的文件指针。2：缓冲区的地址。3、缓冲区的类型。4、缓冲区大小</span>
-    <span class="token function">fwrite</span><span class="token punctuation">(</span>msg2<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>msg2<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> pf<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 将msg1的内容写入pf中，写8个字符，写1次</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">setvbuf</span><span class="token punctuation">(</span>pf<span class="token punctuation">,</span> buff<span class="token punctuation">,</span> _IOLBF<span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 1: 期望缓冲区的文件指针。2：缓冲区的地址。3、缓冲区的类型。4、缓冲区大小</span>
+    <span class="token function">fwrite</span><span class="token punctuation">(</span>msg2<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>msg2<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> pf<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 将msg1的内容写入pf中，写8个字符，写1次</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"test setbuff(line buff)! check l_buf.txt\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"now buff data is : %s \n"</span><span class="token punctuation">,</span> buff<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"enter the enter to continue!\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">fclose</span><span class="token punctuation">(</span>pf<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//===============================================================================================================</span>
-    <span class="token function">memset</span><span class="token punctuation">(</span>buff<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 清空缓冲区buff</span>
+    <span class="token comment">//===============================================================================================================</span>
+    <span class="token function">memset</span><span class="token punctuation">(</span>buff<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 清空缓冲区buff</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>pf <span class="token operator">=</span> <span class="token function">fopen</span><span class="token punctuation">(</span><span class="token string">"f_buf.txt"</span><span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
+    <span class="token punctuation">&#123;</span>
         <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"file open failure!\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token function">setvbuf</span><span class="token punctuation">(</span>pf<span class="token punctuation">,</span> buff<span class="token punctuation">,</span> _IOFBF<span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">// 1: 期望缓冲区的文件指针。2：缓冲区的地址。3、缓冲区的类型。4、缓冲区大小</span>
-    <span class="token function">fwrite</span><span class="token punctuation">(</span>msg2<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>msg2<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> pf<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 将msg1的内容写入pf中，写8个字符，写1次</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">setvbuf</span><span class="token punctuation">(</span>pf<span class="token punctuation">,</span> buff<span class="token punctuation">,</span> _IOFBF<span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 1: 期望缓冲区的文件指针。2：缓冲区的地址。3、缓冲区的类型。4、缓冲区大小</span>
+    <span class="token function">fwrite</span><span class="token punctuation">(</span>msg2<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>msg2<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> pf<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 将msg1的内容写入pf中，写8个字符，写1次</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"test setbuff(full buff)! check f_buf.txt\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"now buff data is : %s \n"</span><span class="token punctuation">,</span> buff<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"enter the enter to continue!\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">fclose</span><span class="token punctuation">(</span>pf<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//===============================================================================================================</span>
+    <span class="token comment">//===============================================================================================================</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#123;</span><span class="token operator">%</span> endraw <span class="token operator">%</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h5 id="运行结果分析"><a href="#运行结果分析" class="headerlink" title="运行结果分析"></a>运行结果分析</h5><p>我们先一步一步来看<br>打开两个终端，一个运行代码，一个查看创建的<br><img src="https://img-blog.csdnimg.cn/df5a063412be42eb8f1ce1eb21fe40be.png"><br>因为没有缓冲区，所以输出的内容直接写入到no_buf1.txt中<br><strong>注意：</strong>这里的world没有显示完全，是因为之前设置中只设置写入8个字符。<br><img src="https://img-blog.csdnimg.cn/dfa312fa715e4c1cb7a7394ecd96785f.png"><br>第二次运行结果和第一次一样，因为都没有设置缓冲区<br><img src="https://img-blog.csdnimg.cn/c1ffae500c0c447a9bd0f5b43329641a.png"><br>第三次运行结果和第一次不再一样，只输出了一个hello<br>在分析原因之前我们先看看msg2的内容：</p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token keyword">char</span> msg2<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"hello\nworld"</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">char</span> msg2<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"hello\nworld"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>我们可以看出hello后面就是一个换行符\n，而行换行符刷新缓冲区，输出到设备中的条件就是换行，所以一开始hello都一直在缓冲区中，直到遇到换行符时，缓冲区刷新，输出到l_buf.txt中。</p>
 <p>因此，当我们再次运行，程序执行到fclose时，缓冲区再次刷新，此时helloworld应该全部输出，我们再摁下enter时，可以看到：<br><img src="https://img-blog.csdnimg.cn/025ef5256c9a4ab98bae339fd8c740db.png"><br>果然，helloworld全部写入l_buf.txt中<br>但是我们再查看f_buf.txt中的内容<br><img src="https://img-blog.csdnimg.cn/5d4eec74c19b4132b07d6cde094dcaf0.png"><br>可以发现内容为空，这是因为第四步我们设置的是全缓冲区，不手动刷新缓冲区，它就一直只存在于缓冲区内，不会写入到f_buf文件中。我们再次摁下enter键时，代码执行到fclose函数，缓冲区刷新，此时缓冲区中的内容已经完全写入f_buf中：<br><img src="https://img-blog.csdnimg.cn/3e5a43d43d424a488e94242c07d166bb.png?x-oss-process=image,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"><br><strong>ps:</strong> 除了fclose，可以使用fflush函数刷新缓冲区。</p>
 <p>通过这段代码，可以对三种缓冲区有一个大致的了解</p>
@@ -1470,19 +1468,19 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/12/08/c%E8%AF%AD%E8%A8%80%E4%BD%8D%E8%BF%90%E7%AE%97/">
+                <a href="/2021/12/08/%E5%9B%BE/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/10.jpg" class="responsive-img" alt="c语言位运算">
+                        <img src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/22.jpg" class="responsive-img" alt="图">
                         
-                        <span class="card-title">c语言位运算</span>
+                        <span class="card-title">图</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            我以前写在其他平台做笔记的，现在搬运到自己的小网站里来
+                            数据库图的结构的存储、打印和遍历，其中对有向图和无向图都做出了实现，对邻接表和邻接矩阵都做出了实现
                         
                     </div>
                     <div class="publish-info">
@@ -1493,8 +1491,8 @@
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/c/" class="post-category">
-                                    c
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                    数据结构
                                 </a>
                             
                             
@@ -1505,7 +1503,11 @@
                 <div class="card-action article-tags">
                     
                     <a href="/tags/c/">
-                        <span class="chip bg-color">c</span>
+                        <span class="chip bg-color">c++</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="chip bg-color">数据结构</span>
                     </a>
                     
                 </div>
@@ -1655,7 +1657,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">14.7k</span>
+                        class="white-color">17.1k</span>
             
             
             
@@ -1768,7 +1770,7 @@
 </div>
     </div>
 </footer>
-
+<script src="/js/prism/prism.js" async></script>
 <div class="progress-bar"></div>
 
     <!-- 搜索遮罩框 -->
@@ -1970,9 +1972,9 @@ $(function () {
     
 
     
-    <script src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":250,"height":500},"mobile":{"show":false},"react":{"opacity":1},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":250,"height":500},"mobile":{"show":false},"react":{"opacity":1},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 
 </html>

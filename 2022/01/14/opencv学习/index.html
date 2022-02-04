@@ -27,11 +27,10 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/s">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/libs/lightGallery/css/lightgallery.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/css/matery.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/css/my.css">
-
+    <link rel="stylesheet" href="/js/prism/prism.css">
     <script src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
 
@@ -674,147 +673,143 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/s">
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/libs/prism/prism.css">
+        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <pre class="line-numbers language-shell"><code class="language-shell">pip install -i https://pypi.tuna.tsinghua.edu.cn/simple opencv-python
-pip install -i https://pypi.tuna.tsinghua.edu.cn/simple opencv-contrib-python
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+                <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> -i https://pypi.tuna.tsinghua.edu.cn/simple opencv-python
+pip <span class="token function">install</span> -i https://pypi.tuna.tsinghua.edu.cn/simple opencv-contrib-python<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h2 id="1-图像IO操作"><a href="#1-图像IO操作" class="headerlink" title="1 图像IO操作"></a>1 图像IO操作</h2><h3 id="1-1-读取图像"><a href="#1-1-读取图像" class="headerlink" title="1.1 读取图像"></a>1.1 读取图像</h3><p>对图像进行简单的读取和展示，读取有三种方法</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> cv2
-<span class="token comment" spellcheck="true"># 彩色读取 1</span>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> cv2
+<span class="token comment"># 彩色读取 1</span>
 <span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
 
 colorImg<span class="token operator">=</span>cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span><span class="token string">"D:\\test\\1.jpg"</span><span class="token punctuation">,</span>cv2<span class="token punctuation">.</span>IMREAD_COLOR<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 灰度读取 0</span>
+<span class="token comment"># 灰度读取 0</span>
 grayScaleImg<span class="token operator">=</span>cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span><span class="token string">"D:\\test\\1.jpg"</span><span class="token punctuation">,</span>cv2<span class="token punctuation">.</span>IMREAD_GRAYSCALE<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 包括alpha通道的加载图像模式 -1</span>
+<span class="token comment"># 包括alpha通道的加载图像模式 -1</span>
 unchanged<span class="token operator">=</span>cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span><span class="token string">"D:\\test\\1.jpg"</span><span class="token punctuation">,</span>cv2<span class="token punctuation">.</span>IMREAD_UNCHANGED<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 如果加载路径有错误，不会报错，会返回一个None值</span>
+<span class="token comment"># 如果加载路径有错误，不会报错，会返回一个None值</span>
 flag<span class="token operator">=</span>cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span><span class="token string">"D:\\1.jpg"</span><span class="token punctuation">)</span>
-<span class="token keyword">if</span><span class="token punctuation">(</span>flag<span class="token operator">==</span>None<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>flag<span class="token operator">==</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"wrong"</span><span class="token punctuation">)</span>
 cv2<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span><span class="token string">"image1"</span><span class="token punctuation">,</span>colorImg<span class="token punctuation">)</span>
 cv2<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span><span class="token string">"image2"</span><span class="token punctuation">,</span>grayScaleImg<span class="token punctuation">)</span>
 cv2<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span><span class="token string">"image3"</span><span class="token punctuation">,</span>unchanged<span class="token punctuation">)</span>
-cv2<span class="token punctuation">.</span>waitKey<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>    
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+cv2<span class="token punctuation">.</span>waitKey<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>    <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在matplotlib中展示</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> cv2
-<span class="token comment" spellcheck="true"># 彩色读取 1</span>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> cv2
+<span class="token comment"># 彩色读取 1</span>
 <span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
 colorImg<span class="token operator">=</span>cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span><span class="token string">"D:\\test\\1.jpg"</span><span class="token punctuation">,</span>cv2<span class="token punctuation">.</span>IMREAD_COLOR<span class="token punctuation">)</span>
 plt<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span>colorImg<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="1-2-保存图像"><a href="#1-2-保存图像" class="headerlink" title="1.2 保存图像"></a>1.2 保存图像</h3><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> cv2
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="1-2-保存图像"><a href="#1-2-保存图像" class="headerlink" title="1.2 保存图像"></a>1.2 保存图像</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> cv2
 colorImg<span class="token operator">=</span>cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span><span class="token string">"D:\\test\\1.jpg"</span><span class="token punctuation">,</span>cv2<span class="token punctuation">.</span>IMREAD_COLOR<span class="token punctuation">)</span>
-cv2<span class="token punctuation">.</span>imwrite<span class="token punctuation">(</span><span class="token string">'./images/test.jpg'</span><span class="token punctuation">,</span>colorImg<span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h2 id="2-绘制几何图形"><a href="#2-绘制几何图形" class="headerlink" title="2 绘制几何图形"></a>2 绘制几何图形</h2><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+cv2<span class="token punctuation">.</span>imwrite<span class="token punctuation">(</span><span class="token string">'./images/test.jpg'</span><span class="token punctuation">,</span>colorImg<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="2-绘制几何图形"><a href="#2-绘制几何图形" class="headerlink" title="2 绘制几何图形"></a>2 绘制几何图形</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
 <span class="token keyword">import</span> cv2 <span class="token keyword">as</span> cv
 <span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
-<span class="token comment" spellcheck="true"># 1 创建一个空白的图像(三通道)</span>
+<span class="token comment"># 1 创建一个空白的图像(三通道)</span>
 img <span class="token operator">=</span> np<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">512</span><span class="token punctuation">,</span><span class="token number">512</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> np<span class="token punctuation">.</span>uint8<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 2 绘制图形</span>
-<span class="token comment" spellcheck="true"># 线：绘制对象、起点、终点、颜色、颜色浓度</span>
+<span class="token comment"># 2 绘制图形</span>
+<span class="token comment"># 线：绘制对象、起点、终点、颜色、颜色浓度</span>
 cv<span class="token punctuation">.</span>line<span class="token punctuation">(</span>img<span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">511</span><span class="token punctuation">,</span><span class="token number">511</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 圆：绘制对象、圆心、半径、颜色、颜色浓度(-1为填充)</span>
+<span class="token comment"># 圆：绘制对象、圆心、半径、颜色、颜色浓度(-1为填充)</span>
 cv<span class="token punctuation">.</span>circle<span class="token punctuation">(</span>img<span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">256</span><span class="token punctuation">,</span><span class="token number">256</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">60</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 方形：绘制对象、左上角坐标、右下角坐标、颜色、颜色浓度</span>
+<span class="token comment"># 方形：绘制对象、左上角坐标、右下角坐标、颜色、颜色浓度</span>
 cv<span class="token punctuation">.</span>rectangle<span class="token punctuation">(</span>img<span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">400</span><span class="token punctuation">,</span><span class="token number">400</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">255</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 文字：绘制对象、绘制文字，文字位置，字体，字体大小，颜色，颜色浓度，？</span>
+<span class="token comment"># 文字：绘制对象、绘制文字，文字位置，字体，字体大小，颜色，颜色浓度，？</span>
 cv<span class="token punctuation">.</span>putText<span class="token punctuation">(</span>img<span class="token punctuation">,</span><span class="token string">"mata"</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">,</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">,</span>cv<span class="token punctuation">.</span>FONT_HERSHEY_SIMPLEX<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span><span class="token number">255</span><span class="token punctuation">,</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span>cv<span class="token punctuation">.</span>LINE_AA<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 3 图像展示</span>
+<span class="token comment"># 3 图像展示</span>
 plt<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span>img<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="3-获取图像像素信息"><a href="#3-获取图像像素信息" class="headerlink" title="3 获取图像像素信息"></a>3 获取图像像素信息</h2><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> cv2
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="3-获取图像像素信息"><a href="#3-获取图像像素信息" class="headerlink" title="3 获取图像像素信息"></a>3 获取图像像素信息</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> cv2
 <span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
 <span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
 
 img<span class="token operator">=</span>cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span><span class="token string">"../images/pig.jpg"</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 获取B G R三色</span>
+<span class="token comment"># 获取B G R三色</span>
 px<span class="token operator">=</span>img<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">,</span><span class="token number">100</span><span class="token punctuation">]</span>
-<span class="token comment" spellcheck="true"># 第三个值在B G R中取值，这里为0，对应着B，也就是蓝色的强度</span>
+<span class="token comment"># 第三个值在B G R中取值，这里为0，对应着B，也就是蓝色的强度</span>
 st<span class="token operator">=</span>img<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">,</span><span class="token number">100</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">]</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>px<span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>st<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 将100，100像素点的位置修改为红色(注意这里的顺序为BGR而不是RGB)</span>
+<span class="token comment"># 将100，100像素点的位置修改为红色(注意这里的顺序为BGR而不是RGB)</span>
 img<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">,</span><span class="token number">100</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">255</span><span class="token punctuation">]</span>
 img<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">,</span><span class="token number">101</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">255</span><span class="token punctuation">]</span>
 img<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">,</span><span class="token number">102</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">255</span><span class="token punctuation">]</span>
 img<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">,</span><span class="token number">103</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">255</span><span class="token punctuation">]</span>
 
 plt<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span>img<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="4-获取图像的属性"><a href="#4-获取图像的属性" class="headerlink" title="4 获取图像的属性"></a>4 获取图像的属性</h2><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> cv2
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="4-获取图像的属性"><a href="#4-获取图像的属性" class="headerlink" title="4 获取图像的属性"></a>4 获取图像的属性</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> cv2
 <span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
 img<span class="token operator">=</span>cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span><span class="token string">"../images/pig.jpg"</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 图像形状，长、宽、通道数</span>
+<span class="token comment"># 图像形状，长、宽、通道数</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>img<span class="token punctuation">.</span>shape<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 图像大小</span>
+<span class="token comment"># 图像大小</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>img<span class="token punctuation">.</span>size<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 图像数据类型</span>
+<span class="token comment"># 图像数据类型</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>img<span class="token punctuation">.</span>dtype<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 图像通道拆分</span>
+<span class="token comment"># 图像通道拆分</span>
 b<span class="token punctuation">,</span>g<span class="token punctuation">,</span>r<span class="token operator">=</span>cv2<span class="token punctuation">.</span>split<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>g<span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># print(b,g,r)</span>
-<span class="token comment" spellcheck="true"># 通道合并</span>
+<span class="token comment"># print(b,g,r)</span>
+<span class="token comment"># 通道合并</span>
 img<span class="token operator">=</span>cv2<span class="token punctuation">.</span>merge<span class="token punctuation">(</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span>g<span class="token punctuation">,</span>r<span class="token punctuation">)</span><span class="token punctuation">)</span>
 
 plt<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span>img<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="5-图像的相加与混合"><a href="#5-图像的相加与混合" class="headerlink" title="5 图像的相加与混合"></a>5 图像的相加与混合</h2><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="5-图像的相加与混合"><a href="#5-图像的相加与混合" class="headerlink" title="5 图像的相加与混合"></a>5 图像的相加与混合</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
 <span class="token keyword">import</span> cv2
 <span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
 x<span class="token operator">=</span>np<span class="token punctuation">.</span>uint8<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">250</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 y<span class="token operator">=</span>np<span class="token punctuation">.</span>uint8<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>x<span class="token operator">+</span>y<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># (250+10)%256</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>cv2<span class="token punctuation">.</span>add<span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 饱和运算，250+10=>255</span>
-<span class="token comment" spellcheck="true"># 相加图像测试</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>x<span class="token operator">+</span>y<span class="token punctuation">)</span> <span class="token comment"># (250+10)%256</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>cv2<span class="token punctuation">.</span>add<span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment"># 饱和运算，250+10=>255</span>
+<span class="token comment"># 相加图像测试</span>
 img1<span class="token operator">=</span>cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span><span class="token string">"../../images/test.jpg"</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span>
 img2<span class="token operator">=</span>cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span><span class="token string">"../../images/2.jpg"</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># opencv中的相加</span>
+<span class="token comment"># opencv中的相加</span>
 img3<span class="token operator">=</span>cv2<span class="token punctuation">.</span>add<span class="token punctuation">(</span>img1<span class="token punctuation">,</span>img2<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 直接相加</span>
+<span class="token comment"># 直接相加</span>
 img4<span class="token operator">=</span>img1<span class="token operator">+</span>img2
-<span class="token comment" spellcheck="true"># 按照权重比例相加，img1的权重为0.8,img2的权重为0.2</span>
+<span class="token comment"># 按照权重比例相加，img1的权重为0.8,img2的权重为0.2</span>
 img5<span class="token operator">=</span>cv2<span class="token punctuation">.</span>addWeighted<span class="token punctuation">(</span>img1<span class="token punctuation">,</span><span class="token number">0.8</span><span class="token punctuation">,</span>img2<span class="token punctuation">,</span><span class="token number">0.2</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span>
 plt<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span>img3<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
 plt<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span>img4<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
 plt<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span>img5<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="6-图像几何变换"><a href="#6-图像几何变换" class="headerlink" title="6 图像几何变换"></a>6 图像几何变换</h2><h3 id="图像缩放"><a href="#图像缩放" class="headerlink" title="图像缩放"></a>图像缩放</h3><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> cv2
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="6-图像几何变换"><a href="#6-图像几何变换" class="headerlink" title="6 图像几何变换"></a>6 图像几何变换</h2><h3 id="图像缩放"><a href="#图像缩放" class="headerlink" title="图像缩放"></a>图像缩放</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> cv2
 <span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
 <span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
 img<span class="token operator">=</span>cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span><span class="token string">'../images/pig.jpg'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
 rows<span class="token punctuation">,</span>cols<span class="token operator">=</span>img<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span>
 img2<span class="token operator">=</span>cv2<span class="token punctuation">.</span>resize<span class="token punctuation">(</span>img<span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">,</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">,</span>cv2<span class="token punctuation">.</span>INTER_LINEAR<span class="token punctuation">)</span>
 plt<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span>img2<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>几种插值方法：<br><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20220115094955.png" alt="20220115094955"></p>
-<h3 id="图像平移"><a href="#图像平移" class="headerlink" title="图像平移"></a>图像平移</h3><h2 id="7-视频读取"><a href="#7-视频读取" class="headerlink" title="7 视频读取"></a>7 视频读取</h2><pre class="line-numbers language-python"><code class="language-python">vc<span class="token operator">=</span>cv2<span class="token punctuation">.</span>VideoCapture<span class="token punctuation">(</span><span class="token string">"../Video/1.mp4"</span><span class="token punctuation">)</span>
+<h3 id="图像平移"><a href="#图像平移" class="headerlink" title="图像平移"></a>图像平移</h3><h2 id="7-视频读取"><a href="#7-视频读取" class="headerlink" title="7 视频读取"></a>7 视频读取</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">vc<span class="token operator">=</span>cv2<span class="token punctuation">.</span>VideoCapture<span class="token punctuation">(</span><span class="token string">"../Video/1.mp4"</span><span class="token punctuation">)</span>
 <span class="token keyword">if</span> vc<span class="token punctuation">.</span>isOpened<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    open<span class="token punctuation">,</span>frame <span class="token operator">=</span> vc<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token builtin">open</span><span class="token punctuation">,</span>frame <span class="token operator">=</span> vc<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token keyword">else</span><span class="token punctuation">:</span>
-    open<span class="token operator">=</span><span class="token boolean">False</span>
-<span class="token keyword">while</span> open<span class="token punctuation">:</span>
+    <span class="token builtin">open</span><span class="token operator">=</span><span class="token boolean">False</span>
+<span class="token keyword">while</span> <span class="token builtin">open</span><span class="token punctuation">:</span>
     ret<span class="token punctuation">,</span>frame <span class="token operator">=</span> vc<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">if</span> frame <span class="token keyword">is</span> None<span class="token punctuation">:</span>
+    <span class="token keyword">if</span> frame <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
         <span class="token keyword">break</span>
     <span class="token keyword">if</span> ret<span class="token operator">==</span><span class="token boolean">True</span><span class="token punctuation">:</span>
         gray<span class="token operator">=</span>cv2<span class="token punctuation">.</span>cvtColor<span class="token punctuation">(</span>frame<span class="token punctuation">,</span>cv2<span class="token punctuation">.</span>COLOR_BGR2GRAY<span class="token punctuation">)</span>
@@ -822,8 +817,9 @@ plt<span class="token punctuation">.</span>show<span class="token punctuation">(
         <span class="token keyword">if</span> cv2<span class="token punctuation">.</span>waitKey<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token number">0xFF</span> <span class="token operator">==</span> <span class="token number">27</span><span class="token punctuation">:</span>
             <span class="token keyword">break</span>
 vc<span class="token punctuation">.</span>release<span class="token punctuation">(</span><span class="token punctuation">)</span>
-cv2<span class="token punctuation">.</span>destroyAllWindows<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+cv2<span class="token punctuation">.</span>destroyAllWindows<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
 
                 
             </div>
@@ -1338,18 +1334,17 @@ cv2<span class="token punctuation">.</span>destroyAllWindows<span class="token p
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/01/14/opencv%E5%AD%A6%E4%B9%A0/">
+                <a href="/2022/02/03/epoll%E6%9C%BA%E5%88%B6/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/17.jpg" class="responsive-img" alt="opencv学习">
+                        <img src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/16.jpg" class="responsive-img" alt="epoll机制">
                         
-                        <span class="card-title">opencv学习</span>
+                        <span class="card-title">epoll机制</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1359,31 +1354,30 @@ cv2<span class="token punctuation">.</span>destroyAllWindows<span class="token p
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-14
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-03
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" class="post-category">
-                                    计算机图形学
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/python/">
-                        <span class="chip bg-color">python</span>
+                    <a href="/tags/c/">
+                        <span class="chip bg-color">c</span>
                     </a>
                     
-                    <a href="/tags/opencv/">
-                        <span class="chip bg-color">opencv</span>
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
                     </a>
                     
                 </div>
@@ -1586,7 +1580,7 @@ cv2<span class="token punctuation">.</span>destroyAllWindows<span class="token p
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">14.7k</span>
+                        class="white-color">17.1k</span>
             
             
             
@@ -1699,7 +1693,7 @@ cv2<span class="token punctuation">.</span>destroyAllWindows<span class="token p
 </div>
     </div>
 </footer>
-
+<script src="/js/prism/prism.js" async></script>
 <div class="progress-bar"></div>
 
     <!-- 搜索遮罩框 -->
@@ -1901,9 +1895,9 @@ $(function () {
     
 
     
-    <script src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":250,"height":500},"mobile":{"show":false},"react":{"opacity":1},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":250,"height":500},"mobile":{"show":false},"react":{"opacity":1},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 
 </html>

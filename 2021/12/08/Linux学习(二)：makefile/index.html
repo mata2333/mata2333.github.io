@@ -26,11 +26,10 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/libs/lightGallery/css/lightgallery.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/css/matery.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/css/my.css">
-
+    <link rel="stylesheet" href="/js/prism/prism.css">
     <script src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
 
@@ -673,6 +672,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/libs/prism/prism.css">
+        
 
         
 
@@ -681,17 +683,15 @@
                 <h1 id="Linux学习（二）：makefile"><a href="#Linux学习（二）：makefile" class="headerlink" title="Linux学习（二）：makefile"></a>Linux学习（二）：makefile</h1><h2 id="gcc"><a href="#gcc" class="headerlink" title="gcc"></a>gcc</h2><p>gcc 是用来编译代码的编译器<br><strong>编译完后有一些常见的输出文件：</strong><br>.a           静态库（文档）<br>.c           需要预处理的C语言源代码<br>.h           C语言源代码的头文件<br>.i             经过预处理后的C语言源代码<br>.o            目标文件（经过汇编产生）<br>.s            经过编译后产生的汇编语言代码</p>
 <h3 id="gcc编译过程："><a href="#gcc编译过程：" class="headerlink" title="gcc编译过程："></a>gcc编译过程：</h3><p>首先对.c和.h文件进行预处理操作，生成.i文件，然后将其编译产生汇编语言代码.s，再对.s文件进行处理，生成目标文件.o，.o文件就是计算机能看懂，且可以执行的机器语言。</p>
 <p>先创建文件写一个简单代码<br><img src="https://img-blog.csdnimg.cn/e0c4318ad98c45b7a7a3978a4e9f435c.png"></p>
-<pre class="line-numbers language-c"><code class="language-c">
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token punctuation">&#123;</span><span class="token operator">%</span> raw <span class="token operator">%</span><span class="token punctuation">&#125;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
+<span class="token punctuation">&#123;</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"HelloWorld"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#123;</span><span class="token operator">%</span> endraw <span class="token operator">%</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h4><p>预处理指令：</p>
-<pre class="line-numbers language-bash"><code class="language-bash">gcc -E helloWorld.c -o helloWorld.i
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gcc -E helloWorld.c -o helloWorld.i<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>执行后多出一个.i文件<br><img src="https://img-blog.csdnimg.cn/e97a1d6b52eb4945889e561a1b08f9f8.png"><br>再通过ls -l指令查看文件详细内容，可以看到文件的大小，在经过预处理后由59B变为16335B，翻了好几倍<br><img src="https://img-blog.csdnimg.cn/02585dd993a74502ae0e232724485854.png"><br>变大的原因：我们之前引用了头文件stdio.h，在执行预处理后，等同于将.h中的所有内容拷贝到了该文件，所以文件大小变大。</p>
 <p>通过less helloWorld.i 可以查看该文件详细内容：<br><img src="https://img-blog.csdnimg.cn/c934f48d92e74c59b5a314f9c1bbfae4.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
 <h4 id="产生汇编"><a href="#产生汇编" class="headerlink" title="产生汇编"></a>产生汇编</h4><p>这里主要使用 -s 命令，可以看见下图能直接对.c 和 .i 文件进行操作，这是因为-s中已经集成了预处理操作<br><img src="https://img-blog.csdnimg.cn/0de7197b314e4bcdbe623f69382cb352.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
@@ -702,74 +702,69 @@
 <p>此外，这种方法只试用于头文件为官方库的情况，如果用到了其他的库则这种一步会出错，遇到这种情况的做法到后面再说。<br><img src="https://img-blog.csdnimg.cn/e1dd0d8f010f4751af341dd90e074c48.png"></p>
 <h2 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h2><p><strong>概念</strong>：在我们使用gcc进行编译时，如果有很多个.c文件，那么我们就需要一条一条的输入指令，这样做太过麻烦，所以Makefile就应运而生。Makefile本质上就是一种脚本，帮我们简化了许多重复性的操作。</p>
 <h3 id="多文件编译"><a href="#多文件编译" class="headerlink" title="多文件编译"></a>多文件编译</h3><p>首先准备好多个.c文件和.h文件，这里准备的是加减除三个函数，用c语言简单写一下就可以。<br><img src="https://img-blog.csdnimg.cn/095bb09380164588ae4886731bd2db20.png"><br>然后myProject.c中写的是主函数：</p>
-<pre class="line-numbers language-c"><code class="language-c">
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"myadd.h"</span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"mysub.h"</span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"mymul.h"</span></span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token punctuation">&#123;</span><span class="token operator">%</span> raw <span class="token operator">%</span><span class="token punctuation">&#125;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"myadd.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"mysub.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"mymul.h"</span></span>
 
 <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
+<span class="token punctuation">&#123;</span>
     <span class="token keyword">int</span> n1 <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
     <span class="token keyword">int</span> n2 <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
     <span class="token keyword">int</span> n3 <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> <span class="token function">myAdd</span><span class="token punctuation">(</span>n1<span class="token punctuation">,</span> n2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> <span class="token function">mySub</span><span class="token punctuation">(</span>n2<span class="token punctuation">,</span> n3<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> <span class="token function">myMul</span><span class="token punctuation">(</span>n1<span class="token punctuation">,</span> n2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#123;</span><span class="token operator">%</span> endraw <span class="token operator">%</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>那么，怎样将几个文件编译起来呢，具体操作如下所示：<br><img src="https://img-blog.csdnimg.cn/2e6ac9fea9374e21b59290c6695dab61.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>很显然，这样做的操作比较麻烦。需要执行很多指令，我们可以用makefile来进行操作。</p>
 <h3 id="makefile-规则"><a href="#makefile-规则" class="headerlink" title="makefile 规则"></a>makefile 规则</h3><p>target:depend<br>command</p>
 <p>target：目标，可以是一个中间文件，也可以是最终的执行文件<br>depend：依赖，指要生成目标文件所需要的文件或目标<br>command：make需要执行的命令</p>
 <p>比如在这个指令中：</p>
-<pre class="line-numbers language-bash"><code class="language-bash">gcc -c mymul.c -o mymul.o
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gcc -c mymul.c -o mymul.o<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>mymul.c为依赖，mymul.o为目标</p>
 <p><strong>makefile 执行顺序：</strong> 默认执行第一条，在执行第一条时，先找所有的依赖文件，如果没有，继续往下找有没有脚本能生成这个依赖文件，如果有就会先执行下面生成依赖的语句，当需要的依赖齐全后再执行那个语句。<br><strong>事例：</strong></p>
-<pre class="line-numbers language-makefile"><code class="language-makefile"><span class="token symbol">test</span><span class="token punctuation">:</span>prog.o code.o
-        gcc -o test prog.o code.o
+<pre class="line-numbers language-makefile" data-language="makefile"><code class="language-makefile"><span class="token symbol">test</span><span class="token punctuation">:</span>prog.o code.o
+		gcc -o test prog.o code.o
 <span class="token symbol">prog.o</span><span class="token punctuation">:</span>prog.c
-        gcc -c prog.c -o prog.o
+		gcc -c prog.c -o prog.o
 <span class="token symbol">code.o</span><span class="token punctuation">:</span>code.c
-        gcc -c code.c -o code.o
+		gcc -c code.c -o code.o
 <span class="token symbol">clean</span><span class="token punctuation">:</span>
-        rm -f *.o
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+		rm -f *.o<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>没有第一条命令中需要的prog.o 和 code.o文件时，就先往下执行，通过编译.c 文件得到了prog.o和code.o文件，然后再执行第一条命令，就可以生成需要的test文件。</p>
 <h3 id="简单的makefile实例"><a href="#简单的makefile实例" class="headerlink" title="简单的makefile实例"></a>简单的makefile实例</h3><p>写一个makefile文档：</p>
-<pre class="line-numbers language-makefile"><code class="language-makefile"><span class="token symbol">myProject</span><span class="token punctuation">:</span> myProject.o myadd.o mysub.o mymul.o
-    gcc *.o -o myProject
+<pre class="line-numbers language-makefile" data-language="makefile"><code class="language-makefile"><span class="token symbol">myProject</span><span class="token punctuation">:</span> myProject.o myadd.o mysub.o mymul.o
+	gcc *.o -o myProject
 <span class="token symbol">myProject.o</span><span class="token punctuation">:</span> myProject.c
-    gcc -c myProject.c -o myProject.o
+	gcc -c myProject.c -o myProject.o
 <span class="token symbol">myadd.o</span><span class="token punctuation">:</span>myadd.c
-    gcc -c myadd.c -o myadd.o
+	gcc -c myadd.c -o myadd.o
 <span class="token symbol">mysub.o</span><span class="token punctuation">:</span>mysub.c
-    gcc -c mysub.c -o mysub.o
+	gcc -c mysub.c -o mysub.o
 <span class="token symbol">mymul.o</span><span class="token punctuation">:</span>mymul.c
-    gcc -c mymul.c -o mymul.o
+	gcc -c mymul.c -o mymul.o
 <span class="token symbol">clean</span><span class="token punctuation">:</span>
-    rm -f *.o
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	rm -f *.o<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>如图所示，写好makefile文件后，直接输入make就可以执行已经写好的指令，十分方便<br><img src="https://img-blog.csdnimg.cn/6826e043f3b24c9d86bf007f728c7d91.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>全部编译好后，如果想要清除掉没用的文件，如.o文件，可以使用在makefile中写好的文件make clean。</p>
 <h3 id="makefile变量和通配符"><a href="#makefile变量和通配符" class="headerlink" title="makefile变量和通配符"></a>makefile变量和通配符</h3><p><strong>变量理解为字符串</strong><br>OBJ = a b c —— 表示OBJ就是a b c 这三个，不能改变了<br>OBJ := a b c —— 表示OBJ是a b c 但可以用+=再去追加<br>OBJ += a b c —— 表示OBJ变量添加了d这一个变量<br><strong>变量引用：</strong><br>$(变量名)<br><strong>通配符：</strong><br>% —— 表示任意一个<br>* —— 表示所有<br>？—— 表示匹配一个未知的东西</p>
 <p>所以，原来的代码就可以进化成这样了：</p>
-<pre class="line-numbers language-makefile"><code class="language-makefile">OBJ<span class="token operator">:=</span>myadd.o mysub.o mymul.o
+<pre class="line-numbers language-makefile" data-language="makefile"><code class="language-makefile">OBJ<span class="token operator">:=</span>myadd.o mysub.o mymul.o
 OBJ<span class="token operator">+=</span>myProject.o
 
 <span class="token symbol">myProject</span><span class="token punctuation">:</span><span class="token variable">$</span><span class="token punctuation">(</span>OBJ<span class="token punctuation">)</span>
-    gcc <span class="token variable">$</span><span class="token punctuation">(</span>OBJ<span class="token punctuation">)</span> -o myProject
+	gcc <span class="token variable">$</span><span class="token punctuation">(</span>OBJ<span class="token punctuation">)</span> -o myProject
 
 <span class="token symbol">*.o</span><span class="token punctuation">:</span>*.c
-    gcc -c *.c -o *.o
+	gcc -c *.c -o *.o
 
 <span class="token symbol">clean</span><span class="token punctuation">:</span>
-    rm -f *.o myProject
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	rm -f *.o myProject<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>可见代码更加简洁，且后续修改也更加方便，但是还可以更加简洁。</p>
 <p>$@ —— 表示目标文件<br>$^ —— 表示依赖文件</p>
 <p>代码再次进化：</p>
-<pre class="line-numbers language-makefile"><code class="language-makefile">target<span class="token operator">=</span>myProject
+<pre class="line-numbers language-makefile" data-language="makefile"><code class="language-makefile">target<span class="token operator">=</span>myProject
 OBJ<span class="token operator">:=</span>myadd.o mysub.o mymul.o
 OBJ<span class="token operator">+=</span>myProject.o
 
@@ -777,14 +772,13 @@ CC<span class="token operator">:=</span>gcc
 CFLAGS<span class="token operator">:=</span>-c
 
 <span class="token symbol"><span class="token variable">$</span>(target)</span><span class="token punctuation">:</span><span class="token variable">$</span><span class="token punctuation">(</span>OBJ<span class="token punctuation">)</span>
-    <span class="token variable">$</span><span class="token punctuation">(</span>CC<span class="token punctuation">)</span> <span class="token variable">$^</span> -o <span class="token variable">$@</span>
+	<span class="token variable">$</span><span class="token punctuation">(</span>CC<span class="token punctuation">)</span> <span class="token variable">$^</span> -o <span class="token variable">$@</span>
 
 <span class="token symbol">*.o</span><span class="token punctuation">:</span>*.c
-    <span class="token variable">$</span><span class="token punctuation">(</span>CC<span class="token punctuation">)</span> <span class="token variable">$</span><span class="token punctuation">(</span>CFLAGS<span class="token punctuation">)</span> <span class="token variable">$^</span> -o <span class="token variable">$@</span>
+	<span class="token variable">$</span><span class="token punctuation">(</span>CC<span class="token punctuation">)</span> <span class="token variable">$</span><span class="token punctuation">(</span>CFLAGS<span class="token punctuation">)</span> <span class="token variable">$^</span> -o <span class="token variable">$@</span>
 
 <span class="token symbol">clean</span><span class="token punctuation">:</span>
-    rm -f *.o <span class="token variable">$</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	rm -f *.o <span class="token variable">$</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这样后续修改直接改变量就可以了，非常方便</p>
 
                 
@@ -1304,31 +1298,31 @@ CFLAGS<span class="token operator">:=</span>-c
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/12/09/Tomcat10%20servlet%E6%97%A0%E6%B3%95%E5%AE%9E%E5%88%97%E5%8C%96%E9%97%AE%E9%A2%98/">
+                <a href="/2021/12/08/c%E8%AF%AD%E8%A8%80%E4%BD%8D%E8%BF%90%E7%AE%97/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/5.jpg" class="responsive-img" alt="maven项目的创建-tomcat10的bug">
+                        <img src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/10.jpg" class="responsive-img" alt="c语言位运算">
                         
-                        <span class="card-title">maven项目的创建-tomcat10的bug</span>
+                        <span class="card-title">c语言位运算</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            tomcat 10更新后官方将javax包改名为jakarta，导致了idea无法找到包，解决方法如下
+                            我以前写在其他平台做笔记的，现在搬运到自己的小网站里来
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-09
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-08
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/javaWeb/" class="post-category">
-                                    javaWeb
+                            <a href="/categories/c/" class="post-category">
+                                    c
                                 </a>
                             
                             
@@ -1338,20 +1332,8 @@ CFLAGS<span class="token operator">:=</span>-c
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/java/">
-                        <span class="chip bg-color">java</span>
-                    </a>
-                    
-                    <a href="/tags/tomcat-10/">
-                        <span class="chip bg-color">tomcat 10</span>
-                    </a>
-                    
-                    <a href="/tags/maven/">
-                        <span class="chip bg-color">maven</span>
-                    </a>
-                    
-                    <a href="/tags/idea/">
-                        <span class="chip bg-color">idea</span>
+                    <a href="/tags/c/">
+                        <span class="chip bg-color">c</span>
                     </a>
                     
                 </div>
@@ -1554,7 +1536,7 @@ CFLAGS<span class="token operator">:=</span>-c
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">14.7k</span>
+                        class="white-color">17.1k</span>
             
             
             
@@ -1667,7 +1649,7 @@ CFLAGS<span class="token operator">:=</span>-c
 </div>
     </div>
 </footer>
-
+<script src="/js/prism/prism.js" async></script>
 <div class="progress-bar"></div>
 
     <!-- 搜索遮罩框 -->
@@ -1869,9 +1851,9 @@ $(function () {
     
 
     
-    <script src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":250,"height":500},"mobile":{"show":false},"react":{"opacity":1},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":250,"height":500},"mobile":{"show":false},"react":{"opacity":1},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 
 </html>

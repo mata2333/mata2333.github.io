@@ -3,8 +3,14 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="aboutme, c++,c,数据结构,linux,html,css,mysql,learning">
-    <meta name="description" content="分享知识，分享娱乐，分享学习资源">
+    <meta name="keywords" content="epoll机制, c++,c,数据结构,linux,html,css,mysql,learning">
+    <meta name="description" content="用到的头文件：
+#include &amp;lt;iostream&gt;
+#include &amp;lt;string&gt;
+#include &amp;lt;stdio.h&gt;
+#include &amp;lt;stdlib.h&gt;
+#include &amp;lt;string.h&gt;
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +22,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>aboutme | mata的博客</title>
+    <title>epoll机制 | mata的博客</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/libs/awesome/css/all.min.css">
@@ -486,12 +492,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">aboutme</h1>
+                    <h1 class="description center-align post-title">epoll机制</h1>
                 </div>
             </div>
         </div>
@@ -605,12 +611,29 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/c/">
+                                <span class="chip bg-color">c</span>
+                            </a>
+                        
+                            <a href="/tags/Linux/">
+                                <span class="chip bg-color">Linux</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Linux/" class="post-category">
+                                Linux
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -619,28 +642,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-12-08
+                    2022-02-03
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-12-08
+                    2022-02-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    6 分
                 </div>
                 
 
@@ -663,7 +686,194 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="hhh"><a href="#hhh" class="headerlink" title="hhh"></a>hhh</h1>
+                <p>用到的头文件：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;errno.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/socket.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;arpa/inet.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;netinet/in.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+
+<span class="token comment">// 用于epoll的头文件</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;fcntl.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/epoll.h></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>代码：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int createSocket(std::string ip, std::string port)
+&#123;
+    int sock &#x3D; socket(AF_INET, SOCK_STREAM, 0);
+    if (sock &lt; 0)
+    &#123;
+        std::cerr &lt;&lt; &quot;socket创建失败&quot; &lt;&lt; std::endl;
+        exit(2);
+    &#125;
+    std::cout &lt;&lt; &quot;socket创建成功&quot; &lt;&lt; std::endl;
+    &#x2F;&#x2F; 用于设置监听句柄可重用设置
+    int opt &#x3D; 1;
+    if (setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &amp;opt, sizeof(opt)) &lt; 0)
+    &#123;
+        std::cerr &lt;&lt; &quot;地址重用设置失败&quot; &lt;&lt; std::endl;
+    &#125;
+
+    sockaddr_in local;
+    local.sin_family &#x3D; AF_INET;
+    local.sin_port &#x3D; htons(atoi(port.c_str()));
+    local.sin_addr.s_addr &#x3D; inet_addr(ip.c_str());
+    &#x2F;&#x2F; 绑定，使sock套接字与创建的地址local相关联
+    if (bind(sock, (sockaddr *)&amp;local, sizeof(local)) &lt; 0)
+    &#123;
+        std::cout &lt;&lt; &quot;bind error&quot; &lt;&lt; std::endl;
+        exit(2);
+    &#125;
+    std::cout &lt;&lt; &quot;bind success&quot; &lt;&lt; std::endl;
+    &#x2F;&#x2F; listen函数使主动连接的sock变为等待用户连接的被动型
+    if (listen(sock, 5) &lt; 0)
+    &#123;
+        std::cout &lt;&lt; &quot;listen error&quot; &lt;&lt; std::endl;
+        exit(2);
+    &#125;
+    std::cout &lt;&lt; &quot;listen success&quot; &lt;&lt; std::endl;
+    return sock;
+&#125;
+
+int setNoblock(int sock)
+&#123;
+    &#x2F;&#x2F; 获得文件状态
+    int fileState &#x3D; fcntl(sock, F_GETFL);
+    &#x2F;&#x2F; 通过位运算追加一个非阻塞的选项
+    return fcntl(sock, F_SETFL, fileState | O_NONBLOCK);
+&#125;
+
+int main(int argc, char const *argv[])
+&#123;
+    &#x2F;&#x2F; if (argc !&#x3D; 3)
+    &#x2F;&#x2F; &#123;
+    &#x2F;&#x2F;     std::cout &lt;&lt; &quot;请输入ip和端口&quot; &lt;&lt; std::endl;
+    &#x2F;&#x2F;     exit(1);
+    &#x2F;&#x2F; &#125;
+    int listenSock &#x3D; createSocket(&quot;0.0.0.0&quot;, &quot;9090&quot;);
+    &#x2F;&#x2F; 第一步：创建epoll_fd对象
+    &#x2F;&#x2F; 生成epoll专用的文件描述符，理解为在内核申请一个空间，用来存放想关注的sock_fd上发生了什么事件
+    int epollFd &#x3D; epoll_create(256);
+    if (epollFd &lt; 0)
+    &#123;
+        std::cout &lt;&lt; &quot;epollFd 创建失败&quot; &lt;&lt; std::endl;
+        exit(1);
+    &#125;
+    std::cout &lt;&lt; &quot;epollFd 创建成功&quot; &lt;&lt; std::endl;
+    &#x2F;&#x2F; 第二步：设置epoll_event对象
+    epoll_event epollEvent;
+    epollEvent.events &#x3D; EPOLLIN;     &#x2F;&#x2F;将当前句柄转化为一个输入事件
+    epollEvent.data.fd &#x3D; listenSock; &#x2F;&#x2F;理解为与事件相关的文件的描述符
+    &#x2F;&#x2F; 添加关心的事件
+    if (epoll_ctl(epollFd, EPOLL_CTL_ADD, listenSock, &amp;epollEvent) &lt; 0)
+    &#123;
+        std::cout &lt;&lt; &quot;添加关心事件失败&quot; &lt;&lt; std::endl;
+        exit(1);
+    &#125;
+    &#x2F;&#x2F; 定义用来保存就绪事件的数组
+    epoll_event readyEvent[128];
+    memset(readyEvent, 0, sizeof(readyEvent));
+    int maxNum &#x3D; 128;   &#x2F;&#x2F; 就绪数组的最大值
+    int timeOut &#x3D; 1000; &#x2F;&#x2F; 超时时间
+    int ret &#x3D; 0;        &#x2F;&#x2F; 返回值
+    while (1)
+    &#123;
+        switch (ret &#x3D; epoll_wait(epollFd, readyEvent, maxNum, timeOut))
+        &#123;
+        case -1:
+            std::cout &lt;&lt; &quot;epoll_wait.......&quot; &lt;&lt; std::endl;
+            break;
+        case 0:
+            std::cout &lt;&lt; &quot;time_out.........&quot; &lt;&lt; std::endl;
+            break;
+        default:
+        &#123;
+            &#x2F;&#x2F; 至少有一个事件就绪
+            int i &#x3D; 0;
+            for (; i &lt; ret; ++i)
+            &#123;
+                &#x2F;&#x2F; 从wait阻塞等待时返回的ready_ev数组中的fd
+                int fd &#x3D; readyEvent[i].data.fd;
+                &#x2F;&#x2F; 判断fd是哪个句柄，是什么事件(fd为listenSock且是输入事件)
+                if ((fd &#x3D;&#x3D; listenSock) &amp;&amp; (readyEvent[i].events &#x3D;&#x3D; EPOLLIN))
+                &#123;
+                    &#x2F;&#x2F;第一次意味着有客户端连接进来
+                    sockaddr_in remote;
+                    socklen_t len &#x3D; sizeof(remote);
+                    int acceptSock &#x3D; accept(listenSock, (sockaddr *)&amp;remote, &amp;len);
+                    if (acceptSock &lt; 0)
+                    &#123;
+                        std::cout &lt;&lt; &quot;accept error&quot; &lt;&lt; std::endl;
+                        continue;
+                    &#125;
+                    printf(&quot;accept a client .. [ip]: %s,[port]:%d\n&quot;,
+                           inet_ntoa(remote.sin_addr), ntohs(remote.sin_port));
+                    &#x2F;&#x2F; 将新的事件添加到epoll事件里
+                    epollEvent.events &#x3D; EPOLLIN | EPOLLET; &#x2F;&#x2F;设置了边缘触发
+                    epollEvent.data.fd &#x3D; acceptSock;
+                    setNoblock(acceptSock); &#x2F;&#x2F; 把当前选项设置为非阻塞
+                    if (epoll_ctl(epollFd, EPOLL_CTL_ADD, acceptSock, &amp;epollEvent) &lt; 0)
+                    &#123;
+                        std::cout &lt;&lt; &quot;epoll_ctl 失败&quot; &lt;&lt; std::endl;
+                        close(acceptSock);
+                    &#125;
+                &#125;
+                else
+                &#123;
+                    &#x2F;&#x2F; 普通的IO(连接句柄的输入了)
+                    if (readyEvent[i].events &#x3D;&#x3D; EPOLLIN)
+                    &#123;
+                        &#x2F;&#x2F; 表示对端发送消息过来了
+                        char buf[1024];
+                        memset(buf, 0, sizeof(buf));
+                        int ret &#x3D; recv(fd, buf, sizeof(buf) - 1, 0);
+                        if (ret &lt; 0)
+                        &#123;
+                            std::cout &lt;&lt; &quot;recv error&quot; &lt;&lt; std::endl;
+                            continue;
+                        &#125;
+                        else if (ret &#x3D;&#x3D; 0)
+                        &#123;
+                            std::cout &lt;&lt; &quot;remote close...&quot; &lt;&lt; std::endl;
+                            epoll_ctl(epollFd, EPOLL_CTL_DEL, fd, NULL);
+                            close(fd);
+                        &#125;
+                        else
+                        &#123;
+                            &#x2F;&#x2F; 读取成功，输出数据
+                            std::cout &lt;&lt; &quot;client : &quot; &lt;&lt; buf &lt;&lt; std::endl;
+                            &#x2F;&#x2F; 把事件写入输出事件，输入事件完成了
+                            epollEvent.data.fd &#x3D; fd;
+                            epollEvent.events &#x3D; EPOLLOUT | EPOLLET;
+                            epoll_ctl(epollFd, EPOLL_CTL_MOD, fd, &amp;epollEvent);
+                            std::cout &lt;&lt; &quot;事件修改成功&quot; &lt;&lt; std::endl;
+                        &#125;
+                    &#125;
+                    else if (readyEvent[i].events &#x3D;&#x3D; EPOLLOUT)
+                    &#123;
+                        std::cout &lt;&lt; &quot;正在准备发送...&quot; &lt;&lt; std::endl;
+                        const char *msg &#x3D; &quot;HTTP&#x2F;1.1 200 OK \r\n\r\n&lt;h1&gt; hello message &lt;&#x2F;h1&gt;\r\n&quot;;
+                        if (send(fd, msg, strlen(msg), 0) &lt; 0)
+                        &#123;
+                            std::cout &lt;&lt; &quot;发送失败&quot; &lt;&lt; std::endl;
+                        &#125;
+                        epoll_ctl(epollFd, EPOLL_CTL_DEL, fd, NULL);
+                        close(fd);
+                    &#125;
+                &#125;
+            &#125;
+        &#125;
+        break;
+        &#125;
+    &#125;
+    close(listenSock);
+    return 0;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -689,7 +899,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://mata2333.github.io/aboutme/index.html">https://mata2333.github.io/aboutme/index.html</a>
+                    <a href="https://mata2333.github.io/2022/02/03/epoll%E6%9C%BA%E5%88%B6/">https://mata2333.github.io/2022/02/03/epoll%E6%9C%BA%E5%88%B6/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -726,7 +936,15 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/c/">
+                                    <span class="chip bg-color">c</span>
+                                </a>
+                            
+                                <a href="/tags/Linux/">
+                                    <span class="chip bg-color">Linux</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -1169,18 +1387,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/aboutme/index.html">
+                <a href="/2022/02/04/Linux%E4%BF%A1%E5%8F%B7/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/19.jpg" class="responsive-img" alt="aboutme">
+                        <img src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/18.jpg" class="responsive-img" alt="Linux信号">
                         
-                        <span class="card-title">aboutme</span>
+                        <span class="card-title">Linux信号</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1190,18 +1407,33 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-08
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-04
+                        </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            mata
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/c/">
+                        <span class="chip bg-color">c</span>
+                    </a>
+                    
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -1209,16 +1441,16 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/aboutme/index.html">
+                <a href="/2022/01/14/opencv%E5%AD%A6%E4%B9%A0/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/19.jpg" class="responsive-img" alt="aboutme">
+                        <img src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/17.jpg" class="responsive-img" alt="opencv学习">
                         
-                        <span class="card-title">aboutme</span>
+                        <span class="card-title">opencv学习</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1229,17 +1461,32 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-14
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            mata
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" class="post-category">
+                                    计算机图形学
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
+                    </a>
+                    
+                    <a href="/tags/opencv/">
+                        <span class="chip bg-color">opencv</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
