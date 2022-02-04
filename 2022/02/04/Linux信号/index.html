@@ -655,7 +655,7 @@ kill -l
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    619
+                    584
                 </div>
                 
 
@@ -691,59 +691,55 @@ kill -l
 <p>1-31 为不可靠信号，之后的叫可靠信号<br><strong>不可靠信号：</strong> 不支持排队，可能会造成信号丢失</p>
 <h2 id="信号的处理动作"><a href="#信号的处理动作" class="headerlink" title="信号的处理动作"></a>信号的处理动作</h2><p>1、忽略<br>2、执行：终止信号，提供信号处理函数(捕捉信号)</p>
 <h2 id="信号产生"><a href="#信号产生" class="headerlink" title="信号产生"></a>信号产生</h2><p>1、通过终端按键(组合键)产生信号<br>2、硬件异常产生的信号(除0异常、内存溢出)<br>3、调用系统函数向进程发信号(kill 命令)<br>4、由软件条件产生信号</p>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#123;%raw%&#125;
-#include &lt;signal.h&gt;
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;signal.h></span></span>
 
-void sig_usr(int sig);
+<span class="token keyword">void</span> <span class="token function">sig_usr</span><span class="token punctuation">(</span><span class="token keyword">int</span> sig<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-int main(int argc, char const *argv[])
-&#123;
-    int i &#x3D; 0;
-    if (signal(SIGUSR1, sig_usr) &#x3D;&#x3D; SIG_ERR)
-        std::cout &lt;&lt; &quot;cannot catch SIGUSR1&quot; &lt;&lt; std::endl;
-    if (signal(SIGUSR2, sig_usr) &#x3D;&#x3D; SIG_ERR)
-        std::cout &lt;&lt; &quot;cannot catch SIGUSR2&quot; &lt;&lt; std::endl;
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token keyword">const</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">signal</span><span class="token punctuation">(</span>SIGUSR1<span class="token punctuation">,</span> sig_usr<span class="token punctuation">)</span> <span class="token operator">==</span> SIG_ERR<span class="token punctuation">)</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"cannot catch SIGUSR1"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">signal</span><span class="token punctuation">(</span>SIGUSR2<span class="token punctuation">,</span> sig_usr<span class="token punctuation">)</span> <span class="token operator">==</span> SIG_ERR<span class="token punctuation">)</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"cannot catch SIGUSR2"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
 
-    while (1)
-    &#123;
-        std::cout &lt;&lt; i &lt;&lt; std::endl;
-        pause();
-        i++;
-    &#125;
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> i <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+        <span class="token function">pause</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        i<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
-    return 0;
-&#125;
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
 
-void sig_usr(int sig)
-&#123;
-    if (sig &#x3D;&#x3D; SIGUSR1)
-        std::cout &lt;&lt; &quot;received SIGUSR1&quot; &lt;&lt; std::endl;
-    else if (sig &#x3D;&#x3D; SIGUSR2)
-        std::cout &lt;&lt; &quot;received SIGUSR2&quot; &lt;&lt; std::endl;
-    else
-        std::cout &lt;&lt; &quot;undeclared signal &quot; &lt;&lt; sig &lt;&lt; std::endl;
-&#125;
-&#123;%endraw%&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">void</span> <span class="token function">sig_usr</span><span class="token punctuation">(</span><span class="token keyword">int</span> sig<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>sig <span class="token operator">==</span> SIGUSR1<span class="token punctuation">)</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"received SIGUSR1"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>sig <span class="token operator">==</span> SIGUSR2<span class="token punctuation">)</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"received SIGUSR2"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">else</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"undeclared signal "</span> <span class="token operator">&lt;&lt;</span> sig <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>编译后得到可执行文件test<br><img src="https://s2.loli.net/2022/02/04/FgvWbP3AXdwBjoi.png"><br><strong>程序做的事情</strong> ：<br>通过signal函数捕获SIGUSR1或SIGUSR2信号<br>当收到以上两种信号的任意一种时，程序便会调用回调函数sig_usr，并将信号的指令传给函数的形参<br>回调函数中可以对收到的信号做出不同处理<br><strong>演示</strong> ：<br><img src="https://s2.loli.net/2022/02/04/X6ow9iCZP2kGUpN.png"><br>打开另一个终端，使用kill发送指令(发送之前需要使用 <strong>ps -ef | grep 程序名</strong> 来查看进程号)<br>kill指令：<strong>kill -信号 进程号</strong><br><img src="https://s2.loli.net/2022/02/04/zuLI1M2WS6UxedE.png"><br>回到运行程序的终端，可以看到程序收到了信号并调用了sig_usr函数<br><img src="https://s2.loli.net/2022/02/04/b3AVW6RCpHPyGFJ.png"><br><strong>注意</strong> :<br>1、不是所有信号都可以被捕获，如SIGKILL信号就无法被signal函数捕获<br>2、信号可能会导致阻塞函数提前返回<br>3、如果将回调函数sig_usr换为SIGIGN，那么捕获到的信号将被忽略</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">signal(SIGINT, SIG_IGN)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h2 id="程序暂停与恢复"><a href="#程序暂停与恢复" class="headerlink" title="程序暂停与恢复"></a>程序暂停与恢复</h2><p><img src="https://s2.loli.net/2022/02/04/k72MRqQhzHSbrsp.png"><br>使用<strong>ctrl+z</strong> 暂停程序<br>使用<strong>jobs</strong> 查看后台的程序<br>使用<strong>CONT</strong> 信号来重新启动程序<br>使用<strong>fg 工作编号</strong> 使后台的程序切换到前台</p>
-<h2 id="计时器"><a href="#计时器" class="headerlink" title="计时器"></a>计时器</h2><h3 id="alarm"><a href="#alarm" class="headerlink" title="alarm"></a>alarm</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#123;%raw%&#125;
-void sig_handler(int num)
-&#123;
-    std::cout &lt;&lt; &quot;receive the signal &quot; &lt;&lt; num &lt;&lt; std::endl;
-&#125;
+<h2 id="计时器"><a href="#计时器" class="headerlink" title="计时器"></a>计时器</h2><h3 id="alarm"><a href="#alarm" class="headerlink" title="alarm"></a>alarm</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">sig_handler</span><span class="token punctuation">(</span><span class="token keyword">int</span> num<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"receive the signal "</span> <span class="token operator">&lt;&lt;</span> num <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
 
-int main(int argc, char const *argv[])
-&#123;
-    signal(SIGALRM, sig_handler);
-    while (1)
-    &#123;
-        alarm(2);
-        pause();
-    &#125;
-    return 0;
-&#125;
-&#123;%endraw%&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token keyword">const</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token function">signal</span><span class="token punctuation">(</span>SIGALRM<span class="token punctuation">,</span> sig_handler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">alarm</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">pause</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="ualarm"><a href="#ualarm" class="headerlink" title="ualarm"></a>ualarm</h3>
                 
             </div>
@@ -1506,7 +1502,7 @@ int main(int argc, char const *argv[])
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">17.1k</span>
+                        class="white-color">16.7k</span>
             
             
             

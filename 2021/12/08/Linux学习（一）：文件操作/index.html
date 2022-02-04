@@ -643,7 +643,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-12-10
+                    2022-02-04
                 </div>
                 
 
@@ -657,7 +657,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    16 分
+                    15 分
                 </div>
                 
 
@@ -688,16 +688,16 @@
 <p>b)接受用户层的系统调用，比如open，link，write等；</p>
 <p>c)对具体文件系统的数据结构进行抽象，以一种统一的数据结构进行管理</p>
 <p>d)接受内核其他子系统的操作请示</p>
-<h3 id="3、Linux系统当中文件系统逻辑关系架构"><a href="#3、Linux系统当中文件系统逻辑关系架构" class="headerlink" title="3、Linux系统当中文件系统逻辑关系架构"></a>3、Linux系统当中文件系统逻辑关系架构</h3><p><img src="https://img-blog.csdnimg.cn/994dbd3be529444ea0ac443cf8c4b28d.png?x-oss-process=image,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"></p>
+<h3 id="3、Linux系统当中文件系统逻辑关系架构"><a href="#3、Linux系统当中文件系统逻辑关系架构" class="headerlink" title="3、Linux系统当中文件系统逻辑关系架构"></a>3、Linux系统当中文件系统逻辑关系架构</h3><p><img src="https://img-blog.csdnimg.cn/994dbd3be529444ea0ac443cf8c4b28d.png?x-oss-process=image,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
 <h3 id="4、VFS在实际系统调用常用操作"><a href="#4、VFS在实际系统调用常用操作" class="headerlink" title="4、VFS在实际系统调用常用操作"></a>4、VFS在实际系统调用常用操作</h3><p>mount()/umount(),  sysfs(),  chroot(),  chdir()/fchdir()/getcwd(),  mkdir()/rmdir(),  readlink()/symlink(),  chown()/fchown()/lchown, select()/poll(),  flock()。</p>
 <h3 id="5、VFS核心数据结构（对象）"><a href="#5、VFS核心数据结构（对象）" class="headerlink" title="5、VFS核心数据结构（对象）"></a>5、VFS核心数据结构（对象）</h3><p>a) 超级块（superblock）对象————每一个文件系统都有一个超级块对象</p>
 <p>b) 索引节点（inode）对象————每一个文件都有一个索引节点对象，每一个索引节点对象都有一个索引节点编号，这个编号唯一可以标识某一个文件系统当中指定的文件</p>
 <p>c) 目录项（dentry）对象</p>
 <p>d) 文件（file）对象</p>
 <h3 id="当前学习阶段了解这么多应该就够了，后续的内容还没有接触到"><a href="#当前学习阶段了解这么多应该就够了，后续的内容还没有接触到" class="headerlink" title="当前学习阶段了解这么多应该就够了，后续的内容还没有接触到"></a><em><strong>当前学习阶段了解这么多应该就够了，后续的内容还没有接触到</strong></em></h3><h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><h3 id="文件信息查看"><a href="#文件信息查看" class="headerlink" title="文件信息查看"></a>文件信息查看</h3><p>查看文件详细信息的指令——stat filename</p>
-<p><img src="https://img-blog.csdnimg.cn/7a35015644fd4f5ab07d013bda140791.png" alt="请添加图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/7a35015644fd4f5ab07d013bda140791.png"></p>
 <p>如图所示，查看当前目录的文件信息</p>
-<p><strong>大小：</strong> 在Linux中一切皆文件，因此目录也是文件，也有大小，在这里，该目录的大小为4096，<strong>注意</strong>这里的大小不是这个文件的容量大小，如果需要查看文件或者文件夹的大小，需要用到du -sh命令<br><img src="https://img-blog.csdnimg.cn/84258509c6474323bdd305e2b12dafeb.png?x-oss-process=image,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_19,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"></p>
+<p><strong>大小：</strong> 在Linux中一切皆文件，因此目录也是文件，也有大小，在这里，该目录的大小为4096，<strong>注意</strong>这里的大小不是这个文件的容量大小，如果需要查看文件或者文件夹的大小，需要用到du -sh命令<br><img src="https://img-blog.csdnimg.cn/84258509c6474323bdd305e2b12dafeb.png?x-oss-process=image,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_19,color_FFFFFF,t_70,g_se,x_16"></p>
 <p>Linux系统中，目录（directory）也是一种文件。打开目录，实际上就是打开目录文件。目录文件的结构非常简单，就是一系列目录项（dirent）的列表。每个目录项，由两部分组成：所包含文件的文件名，以及该文件名对应的inode号码。所以这里的大小并不是文件容量的大小</p>
 <p><strong>块：</strong> 硬盘的最小存储单位叫做“扇区”（Sector）。每个扇区储存512字节（相当于0.5KB）。“块”的大小，最常见的是4KB，即<strong>连续八个 sector组成一个 block</strong>。</p>
 <p><strong>设备：</strong> 设备编号。</p>
@@ -709,8 +709,7 @@
 <h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><p><img src="https://img-blog.csdnimg.cn/e145fb532bb54dcd8c49101def8805ce.png"><br>如图所示，123.txt 文件已经没有任何权限，现在我们想要给用户添加可读和可执行的权限，除了方法一之外还有什么方法呢。我们可以不用chmod u+r 123.txt; chmod u+x 123.txt。而是采取覆盖权限的方法。<br>如图所示，<br><img src="https://img-blog.csdnimg.cn/5385f5edbcca410287147e87c05d11bb.png"><br>可见，u=rx 的意思为用户的权限被r-x覆盖。</p>
 <h4 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h4><p>r—-4，w—-2，x—-1。请记住三个权限所对应的数字<br>所以有：<br>0对应—<br>1对应–x<br>2对应-w-<br>3对应-wx<br>4对应r–<br>5对应r-x<br>6对应rw-<br>7对应rwx<br>由此可以看出，三个权限的排列组合一共有8个，于是我们可以用这些数字来表示所有权限<br>现在，我们有一个没有任何权限的文件123.txt<br><img src="https://img-blog.csdnimg.cn/353b8364863d4497a82c791bfef2116f.png"><br>现在我们想要为它的用户加上可读权限，给它的所属组添加可读可写权限，给它的其他添加所有权限<br>所以现在有  chmod 467 123.txt<br><img src="https://img-blog.csdnimg.cn/a212b9b358cb4edea4a50816e811c94a.png?x-oss-process=image,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>这便是数字法修改权限</p>
 <h3 id="c语言查询文件权限"><a href="#c语言查询文件权限" class="headerlink" title="c语言查询文件权限"></a>c语言查询文件权限</h3><p>我们也可以用c语言的代码来实现查询权限：</p>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token punctuation">&#123;</span><span class="token operator">%</span> raw <span class="token operator">%</span><span class="token punctuation">&#125;</span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/stat.h></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/types.h></span></span>
 
@@ -739,8 +738,7 @@
         <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"请输入需要查询的文件\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#123;</span><span class="token operator">%</span> endraw <span class="token operator">%</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>编译指令:</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gcc -g filename.c -o filename<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
@@ -749,8 +747,7 @@
 <p>main函数中的参数argc和argv是什么意思可以参考这个视频<br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Nx411D7R7?from=search&seid=17402910508511669946&spm_id_from=333.337.0.0">main函数中的参数</a></p>
 <p> fileAttribute.st_mode  —— 代表文件权限 ，如果已经理解上面修改权限的第三种方法，那么应该可以知道，其实在该属性之中权限便是以数字的形式存储。注意在该代码中使用了mask=0700，和mask&gt;&gt;=3操作所以每次的权限对比，都是和7在进行与运算。</p>
 <p>我们逐行分析代码中的for循环部分：<br>首先看第一个循环，即i=3时。<br>fileAttribute.st_mode &amp; mask具体是什么意思呢<br>我们以一个文件为例子，假设该文件的权限为rw- r– -wx<br>那么有<br>| fileAttribute.st_mode: | 6   | 4   | 3   |<br>| ———————- | — | — | — ||<br>| mask:                  | 7   | 0   | 0   |<br>如果你已经知道了位与运算的含义，那么应该清除，6和7的位与运算是先将它们转换为二进制再进行比较。<br>首先看6和7，就是110和111，比较后最终结果仍然是110，然后看后续的比较，可知全部为000。<br>比较过后的结果为110000000，然后再进行右移操作，右移六位，可以得到110。也就是6，filePermissions数组的下标为6时就是rw-。<br>然后mask右移3位，原来的700变为70。再继续同样的操作，直至i=0时。</p>
-<h3 id="c语言查看文件的其他信息"><a href="#c语言查看文件的其他信息" class="headerlink" title="c语言查看文件的其他信息"></a>c语言查看文件的其他信息</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token punctuation">&#123;</span><span class="token operator">%</span> raw <span class="token operator">%</span><span class="token punctuation">&#125;</span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<h3 id="c语言查看文件的其他信息"><a href="#c语言查看文件的其他信息" class="headerlink" title="c语言查看文件的其他信息"></a>c语言查看文件的其他信息</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/stat.h></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/types.h></span></span>
 
@@ -799,8 +796,7 @@
         <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"请输入需要查询的文件\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#123;</span><span class="token operator">%</span> endraw <span class="token operator">%</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>主要记住里面参数，结构体成员和相应的函数。</strong></p>
 <h3 id="文件查找"><a href="#文件查找" class="headerlink" title="文件查找"></a>文件查找</h3><h4 id="文件名查找"><a href="#文件名查找" class="headerlink" title="文件名查找"></a>文件名查找</h4><p>格式：find 查找目录 -name 文件名<br><img src="https://img-blog.csdnimg.cn/441c33f6084b4471b4586627d605d921.png"><br>如图所示，在FindRoute目录下有两个txt文件和两个.c文件，现在我们在Linux目录下找到FindRoute中的123.txt，过程与结果见下图<br><img src="https://img-blog.csdnimg.cn/27e643f35fcf40cfaa079396ebecd5eb.png"><br>同理，我们再找到所有.c文件，在使用*通配符时需要用\进行转义<br><img src="https://img-blog.csdnimg.cn/7fcdb9e16f39475995f01035d67c6fac.png"><br>查找以0到9开头的文件<br><img src="https://img-blog.csdnimg.cn/a07c1b3b68384bf08c9878afaf0f1763.png?x-oss-process=image,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
 <h4 id="文件大小查找"><a href="#文件大小查找" class="headerlink" title="文件大小查找"></a>文件大小查找</h4><p>查找当前目录大于5k的文件<br><img src="https://img-blog.csdnimg.cn/98e3c35797484ebba38d14f426327785.png"><br>查找当前目录下大于5k 小于 2M的文件<br><img src="https://img-blog.csdnimg.cn/4c7e9044cb924b2e9d3527d2eabdf447.png"></p>
@@ -817,8 +813,7 @@
 <p>这个比喻如果有些不合适的地方，希望知道的人可以帮忙指出。但是缓冲区的大致意思就是在输入输出设备之间，用来存储数据，使得高速设备和低速设备之间可以充分配合，发挥出最佳性能。</p>
 <h4 id="三种缓冲区"><a href="#三种缓冲区" class="headerlink" title="三种缓冲区"></a>三种缓冲区</h4><p>缓冲区有三个典型：<br><strong>1、全缓冲</strong><br>典型代表：对磁盘文件的读写<br><strong>2、行缓冲</strong><br>典型代表：标准输入和标准输出<br><strong>3、无缓冲</strong><br>典型代表：标准错误</p>
 <h4 id="c语言设置缓冲区"><a href="#c语言设置缓冲区" class="headerlink" title="c语言设置缓冲区"></a>c语言设置缓冲区</h4><h5 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h5><p>代码逻辑比较简单，且注释中已经有解释，因此不做赘述</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token punctuation">&#123;</span><span class="token operator">%</span> raw <span class="token operator">%</span><span class="token punctuation">&#125;</span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;errno.h></span> <span class="token comment">//标准错误相关函数</span></span>
 
@@ -889,10 +884,9 @@
     <span class="token function">fclose</span><span class="token punctuation">(</span>pf<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token comment">//===============================================================================================================</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#123;</span><span class="token operator">%</span> endraw <span class="token operator">%</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h5 id="运行结果分析"><a href="#运行结果分析" class="headerlink" title="运行结果分析"></a>运行结果分析</h5><p>我们先一步一步来看<br>打开两个终端，一个运行代码，一个查看创建的<br><img src="https://img-blog.csdnimg.cn/df5a063412be42eb8f1ce1eb21fe40be.png"><br>因为没有缓冲区，所以输出的内容直接写入到no_buf1.txt中<br><strong>注意：</strong>这里的world没有显示完全，是因为之前设置中只设置写入8个字符。<br><img src="https://img-blog.csdnimg.cn/dfa312fa715e4c1cb7a7394ecd96785f.png"><br>第二次运行结果和第一次一样，因为都没有设置缓冲区<br><img src="https://img-blog.csdnimg.cn/c1ffae500c0c447a9bd0f5b43329641a.png"><br>第三次运行结果和第一次不再一样，只输出了一个hello<br>在分析原因之前我们先看看msg2的内容：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">char</span> msg2<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"hello\nworld"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">char</span> msg2<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"hello\nworld"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>我们可以看出hello后面就是一个换行符\n，而行换行符刷新缓冲区，输出到设备中的条件就是换行，所以一开始hello都一直在缓冲区中，直到遇到换行符时，缓冲区刷新，输出到l_buf.txt中。</p>
 <p>因此，当我们再次运行，程序执行到fclose时，缓冲区再次刷新，此时helloworld应该全部输出，我们再摁下enter时，可以看到：<br><img src="https://img-blog.csdnimg.cn/025ef5256c9a4ab98bae339fd8c740db.png"><br>果然，helloworld全部写入l_buf.txt中<br>但是我们再查看f_buf.txt中的内容<br><img src="https://img-blog.csdnimg.cn/5d4eec74c19b4132b07d6cde094dcaf0.png"><br>可以发现内容为空，这是因为第四步我们设置的是全缓冲区，不手动刷新缓冲区，它就一直只存在于缓冲区内，不会写入到f_buf文件中。我们再次摁下enter键时，代码执行到fclose函数，缓冲区刷新，此时缓冲区中的内容已经完全写入f_buf中：<br><img src="https://img-blog.csdnimg.cn/3e5a43d43d424a488e94242c07d166bb.png?x-oss-process=image,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"><br><strong>ps:</strong> 除了fclose，可以使用fflush函数刷新缓冲区。</p>
 <p>通过这段代码，可以对三种缓冲区有一个大致的了解</p>
@@ -1415,6 +1409,55 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
+                <a href="/2021/12/08/c%E8%AF%AD%E8%A8%80%E4%BD%8D%E8%BF%90%E7%AE%97/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/10.jpg" class="responsive-img" alt="c语言位运算">
+                        
+                        <span class="card-title">c语言位运算</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            我以前写在其他平台做笔记的，现在搬运到自己的小网站里来
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-08
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/c/" class="post-category">
+                                    c
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/c/">
+                        <span class="chip bg-color">c</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/2021/12/08/Linux%E5%AD%A6%E4%B9%A0(%E4%BA%8C)%EF%BC%9Amakefile/">
                     <div class="card-image">
                         
@@ -1431,9 +1474,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-08
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-08
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1455,59 +1498,6 @@
                     
                     <a href="/tags/Linux/">
                         <span class="chip bg-color">Linux</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/12/08/%E5%9B%BE/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/22.jpg" class="responsive-img" alt="图">
-                        
-                        <span class="card-title">图</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            数据库图的结构的存储、打印和遍历，其中对有向图和无向图都做出了实现，对邻接表和邻接矩阵都做出了实现
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-08
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
-                                    数据结构
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/c/">
-                        <span class="chip bg-color">c++</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-                        <span class="chip bg-color">数据结构</span>
                     </a>
                     
                 </div>
@@ -1657,7 +1647,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">17.1k</span>
+                        class="white-color">16.7k</span>
             
             
             

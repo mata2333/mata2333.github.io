@@ -643,14 +643,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-18
+                    2022-02-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    763
+                    739
                 </div>
                 
 
@@ -681,8 +681,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="1、顺序表查找"><a href="#1、顺序表查找" class="headerlink" title="1、顺序表查找"></a>1、顺序表查找</h2><h3 id="顺序表查找算法"><a href="#顺序表查找算法" class="headerlink" title="顺序表查找算法"></a>顺序表查找算法</h3><p>这个很简单，就是从下标0开始逐个比较，值相同就返回下标。。</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token punctuation">&#123;</span><span class="token operator">%</span> raw <span class="token operator">%</span><span class="token punctuation">&#125;</span>
-<span class="token keyword">int</span> <span class="token function">Sequential_Search</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> key<span class="token punctuation">)</span>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">Sequential_Search</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> key<span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
 	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
 	<span class="token punctuation">&#123;</span>
@@ -690,11 +689,9 @@
 			<span class="token keyword">return</span> i<span class="token punctuation">;</span>
 	<span class="token punctuation">&#125;</span>
 	<span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#123;</span><span class="token operator">%</span> endraw <span class="token operator">%</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="顺序表查找优化"><a href="#顺序表查找优化" class="headerlink" title="顺序表查找优化"></a>顺序表查找优化</h3><p>在上个算法里需要比较两次，分别是i &lt; n 和a[i]==key，很显然，i &lt; n的比较其实可以去掉，改进算法如下：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token punctuation">&#123;</span><span class="token operator">%</span> raw <span class="token operator">%</span><span class="token punctuation">&#125;</span>
-<span class="token keyword">int</span> <span class="token function">Sequential_Search2</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> key<span class="token punctuation">)</span>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">Sequential_Search2</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> key<span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
 	<span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 	a<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">=</span> key<span class="token punctuation">;</span>         <span class="token comment">//在创建数组时，这里创建的数组大小应该>=n+1</span>
@@ -709,13 +706,11 @@
 	<span class="token punctuation">&#125;</span>
 	<span class="token keyword">else</span> 
 		<span class="token keyword">return</span> i<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#123;</span><span class="token operator">%</span> endraw <span class="token operator">%</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这段代码虽然也比较了两次，但显然第二次不在循环内，只做了一次比较，所以几乎可以忽略。</p>
 <p>以上两种比较的时间复杂度都是O(n)。所以需要一个更加高效的算法。</p>
 <h2 id="有序表查找"><a href="#有序表查找" class="headerlink" title="有序表查找"></a>有序表查找</h2><h3 id="折半查找-二分查找"><a href="#折半查找-二分查找" class="headerlink" title="折半查找(二分查找)"></a>折半查找(二分查找)</h3><p>我们查字典也是一种二分查找，我们一般不会从a开始找，一直找到最后，而是先翻开中间的位置，看看是什么字母，如果需要找的字母在左边，那么就再往左翻一半，反之则往右，直到查找到了自己想要的字符。二分查找也是如此。</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token punctuation">&#123;</span><span class="token operator">%</span> raw <span class="token operator">%</span><span class="token punctuation">&#125;</span>
-<span class="token keyword">int</span> <span class="token function">Binary_Search</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> key<span class="token punctuation">)</span>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">Binary_Search</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> key<span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
 	<span class="token keyword">int</span> low <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> high <span class="token operator">=</span> n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> mid <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 	<span class="token keyword">while</span> <span class="token punctuation">(</span>low <span class="token operator">&lt;=</span> high<span class="token punctuation">)</span>
@@ -729,14 +724,12 @@
 			high <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
 	<span class="token punctuation">&#125;</span>
 	<span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#123;</span><span class="token operator">%</span> endraw <span class="token operator">%</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>折半查找对比起线性查找必须要是有序的，但是在不重新插入的情况下，排序只需要排一次，查找却可以查很多次，且折半查找的时间复杂度为log(n)，远远好于O(n);</p>
 <h3 id="效率对比"><a href="#效率对比" class="headerlink" title="效率对比"></a>效率对比</h3><p>我们现在设置一个大小为200000的数组，然后用rand()函数给他们设置从0~100000之间的数，然后在一个循环中查找1000000次，输出用时。(测试代码最后给出);</p>
 <h4 id="顺序查找用时："><a href="#顺序查找用时：" class="headerlink" title="顺序查找用时："></a>顺序查找用时：</h4><p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20211214155408.png"></p>
 <h4 id="二分查找用时："><a href="#二分查找用时：" class="headerlink" title="二分查找用时："></a>二分查找用时：</h4><p><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20211214155438.png"><br><br>这效率差距就很大了，差了770多倍</p>
-<h3 id="插值查找"><a href="#插值查找" class="headerlink" title="插值查找"></a>插值查找</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token punctuation">&#123;</span><span class="token operator">%</span> raw <span class="token operator">%</span><span class="token punctuation">&#125;</span>
-<span class="token keyword">int</span> <span class="token function">InterpolationSearch</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> key<span class="token punctuation">)</span>
+<h3 id="插值查找"><a href="#插值查找" class="headerlink" title="插值查找"></a>插值查找</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">InterpolationSearch</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> key<span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
 	<span class="token keyword">long</span> <span class="token keyword">long</span> low <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> high <span class="token operator">=</span> n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> mid <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 	<span class="token keyword">while</span> <span class="token punctuation">(</span>low <span class="token operator">&lt;=</span> high<span class="token punctuation">)</span>
@@ -750,8 +743,7 @@
 			high <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
 	<span class="token punctuation">&#125;</span>
 	<span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#123;</span><span class="token operator">%</span> endraw <span class="token operator">%</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>其实就是把mid = (low + high) / 2 换成 mid = low + (high - low) * (key - a[low]) / (a[high] - a[low])，这样做目前有什么好处我还在研究。。反正经过我测试其效率反而降低了。。</p>
 <h4 id="测试结果如下："><a href="#测试结果如下：" class="headerlink" title="测试结果如下："></a>测试结果如下：</h4><p>现在为了提升对比度，将循环次数提升到10000000次<br><br>二分查找：<br><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20211214160347.png"><br><br>插值查找：<br><img src="https://cdn.jsdelivr.net/gh/mata2333/PicGo/data/20211214160440.png"><br><br>经过随机出来的数据也都保持着平均水平，不会出现差值过大的情况，所以为什么速度反而慢了暂时未知😔</p>
 <h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2>
@@ -1522,7 +1514,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">17.1k</span>
+                        class="white-color">16.7k</span>
             
             
             

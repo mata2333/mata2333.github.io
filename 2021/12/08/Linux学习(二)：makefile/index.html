@@ -643,7 +643,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-12-10
+                    2022-02-04
                 </div>
                 
 
@@ -683,13 +683,11 @@
                 <h1 id="Linux学习（二）：makefile"><a href="#Linux学习（二）：makefile" class="headerlink" title="Linux学习（二）：makefile"></a>Linux学习（二）：makefile</h1><h2 id="gcc"><a href="#gcc" class="headerlink" title="gcc"></a>gcc</h2><p>gcc 是用来编译代码的编译器<br><strong>编译完后有一些常见的输出文件：</strong><br>.a           静态库（文档）<br>.c           需要预处理的C语言源代码<br>.h           C语言源代码的头文件<br>.i             经过预处理后的C语言源代码<br>.o            目标文件（经过汇编产生）<br>.s            经过编译后产生的汇编语言代码</p>
 <h3 id="gcc编译过程："><a href="#gcc编译过程：" class="headerlink" title="gcc编译过程："></a>gcc编译过程：</h3><p>首先对.c和.h文件进行预处理操作，生成.i文件，然后将其编译产生汇编语言代码.s，再对.s文件进行处理，生成目标文件.o，.o文件就是计算机能看懂，且可以执行的机器语言。</p>
 <p>先创建文件写一个简单代码<br><img src="https://img-blog.csdnimg.cn/e0c4318ad98c45b7a7a3978a4e9f435c.png"></p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token punctuation">&#123;</span><span class="token operator">%</span> raw <span class="token operator">%</span><span class="token punctuation">&#125;</span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"HelloWorld"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#123;</span><span class="token operator">%</span> endraw <span class="token operator">%</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h4><p>预处理指令：</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gcc -E helloWorld.c -o helloWorld.i<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>执行后多出一个.i文件<br><img src="https://img-blog.csdnimg.cn/e97a1d6b52eb4945889e561a1b08f9f8.png"><br>再通过ls -l指令查看文件详细内容，可以看到文件的大小，在经过预处理后由59B变为16335B，翻了好几倍<br><img src="https://img-blog.csdnimg.cn/02585dd993a74502ae0e232724485854.png"><br>变大的原因：我们之前引用了头文件stdio.h，在执行预处理后，等同于将.h中的所有内容拷贝到了该文件，所以文件大小变大。</p>
@@ -702,8 +700,7 @@
 <p>此外，这种方法只试用于头文件为官方库的情况，如果用到了其他的库则这种一步会出错，遇到这种情况的做法到后面再说。<br><img src="https://img-blog.csdnimg.cn/e1dd0d8f010f4751af341dd90e074c48.png"></p>
 <h2 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h2><p><strong>概念</strong>：在我们使用gcc进行编译时，如果有很多个.c文件，那么我们就需要一条一条的输入指令，这样做太过麻烦，所以Makefile就应运而生。Makefile本质上就是一种脚本，帮我们简化了许多重复性的操作。</p>
 <h3 id="多文件编译"><a href="#多文件编译" class="headerlink" title="多文件编译"></a>多文件编译</h3><p>首先准备好多个.c文件和.h文件，这里准备的是加减除三个函数，用c语言简单写一下就可以。<br><img src="https://img-blog.csdnimg.cn/095bb09380164588ae4886731bd2db20.png"><br>然后myProject.c中写的是主函数：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token punctuation">&#123;</span><span class="token operator">%</span> raw <span class="token operator">%</span><span class="token punctuation">&#125;</span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"myadd.h"</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"mysub.h"</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"mymul.h"</span></span>
@@ -716,8 +713,7 @@
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> <span class="token function">myAdd</span><span class="token punctuation">(</span>n1<span class="token punctuation">,</span> n2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> <span class="token function">mySub</span><span class="token punctuation">(</span>n2<span class="token punctuation">,</span> n3<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> <span class="token function">myMul</span><span class="token punctuation">(</span>n1<span class="token punctuation">,</span> n2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#123;</span><span class="token operator">%</span> endraw <span class="token operator">%</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>那么，怎样将几个文件编译起来呢，具体操作如下所示：<br><img src="https://img-blog.csdnimg.cn/2e6ac9fea9374e21b59290c6695dab61.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>很显然，这样做的操作比较麻烦。需要执行很多指令，我们可以用makefile来进行操作。</p>
 <h3 id="makefile-规则"><a href="#makefile-规则" class="headerlink" title="makefile 规则"></a>makefile 规则</h3><p>target:depend<br>command</p>
 <p>target：目标，可以是一个中间文件，也可以是最终的执行文件<br>depend：依赖，指要生成目标文件所需要的文件或目标<br>command：make需要执行的命令</p>
@@ -1298,55 +1294,6 @@ CFLAGS<span class="token operator">:=</span>-c
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/12/08/c%E8%AF%AD%E8%A8%80%E4%BD%8D%E8%BF%90%E7%AE%97/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/10.jpg" class="responsive-img" alt="c语言位运算">
-                        
-                        <span class="card-title">c语言位运算</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            我以前写在其他平台做笔记的，现在搬运到自己的小网站里来
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-08
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/c/" class="post-category">
-                                    c
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/c/">
-                        <span class="chip bg-color">c</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
                 <a href="/2021/12/08/Linux%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">
                     <div class="card-image">
                         
@@ -1363,9 +1310,9 @@ CFLAGS<span class="token operator">:=</span>-c
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-08
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-08
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1387,6 +1334,59 @@ CFLAGS<span class="token operator">:=</span>-c
                     
                     <a href="/tags/Linux/">
                         <span class="chip bg-color">Linux</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/12/08/%E5%9B%BE/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/mata2333/mata2333.github.io/medias/featureimages/22.jpg" class="responsive-img" alt="图">
+                        
+                        <span class="card-title">图</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            数据库图的结构的存储、打印和遍历，其中对有向图和无向图都做出了实现，对邻接表和邻接矩阵都做出了实现
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                    数据结构
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/c/">
+                        <span class="chip bg-color">c++</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="chip bg-color">数据结构</span>
                     </a>
                     
                 </div>
@@ -1536,7 +1536,7 @@ CFLAGS<span class="token operator">:=</span>-c
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">17.1k</span>
+                        class="white-color">16.7k</span>
             
             
             

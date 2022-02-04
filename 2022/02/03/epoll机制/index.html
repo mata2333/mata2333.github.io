@@ -656,14 +656,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    5 分
                 </div>
                 
 
@@ -687,7 +687,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>用到的头文件：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
@@ -702,177 +702,177 @@
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;fcntl.h></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/epoll.h></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>代码：</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int createSocket(std::string ip, std::string port)
-&#123;
-    int sock &#x3D; socket(AF_INET, SOCK_STREAM, 0);
-    if (sock &lt; 0)
-    &#123;
-        std::cerr &lt;&lt; &quot;socket创建失败&quot; &lt;&lt; std::endl;
-        exit(2);
-    &#125;
-    std::cout &lt;&lt; &quot;socket创建成功&quot; &lt;&lt; std::endl;
-    &#x2F;&#x2F; 用于设置监听句柄可重用设置
-    int opt &#x3D; 1;
-    if (setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &amp;opt, sizeof(opt)) &lt; 0)
-    &#123;
-        std::cerr &lt;&lt; &quot;地址重用设置失败&quot; &lt;&lt; std::endl;
-    &#125;
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">createSocket</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>string ip<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>string port<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> sock <span class="token operator">=</span> <span class="token function">socket</span><span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_STREAM<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>sock <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"socket创建失败"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"socket创建成功"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token comment">// 用于设置监听句柄可重用设置</span>
+    <span class="token keyword">int</span> opt <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">setsockopt</span><span class="token punctuation">(</span>sock<span class="token punctuation">,</span> SOL_SOCKET<span class="token punctuation">,</span> SO_REUSEADDR<span class="token punctuation">,</span> <span class="token operator">&amp;</span>opt<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>opt<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"地址重用设置失败"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
-    sockaddr_in local;
-    local.sin_family &#x3D; AF_INET;
-    local.sin_port &#x3D; htons(atoi(port.c_str()));
-    local.sin_addr.s_addr &#x3D; inet_addr(ip.c_str());
-    &#x2F;&#x2F; 绑定，使sock套接字与创建的地址local相关联
-    if (bind(sock, (sockaddr *)&amp;local, sizeof(local)) &lt; 0)
-    &#123;
-        std::cout &lt;&lt; &quot;bind error&quot; &lt;&lt; std::endl;
-        exit(2);
-    &#125;
-    std::cout &lt;&lt; &quot;bind success&quot; &lt;&lt; std::endl;
-    &#x2F;&#x2F; listen函数使主动连接的sock变为等待用户连接的被动型
-    if (listen(sock, 5) &lt; 0)
-    &#123;
-        std::cout &lt;&lt; &quot;listen error&quot; &lt;&lt; std::endl;
-        exit(2);
-    &#125;
-    std::cout &lt;&lt; &quot;listen success&quot; &lt;&lt; std::endl;
-    return sock;
-&#125;
+    sockaddr_in local<span class="token punctuation">;</span>
+    local<span class="token punctuation">.</span>sin_family <span class="token operator">=</span> AF_INET<span class="token punctuation">;</span>
+    local<span class="token punctuation">.</span>sin_port <span class="token operator">=</span> <span class="token function">htons</span><span class="token punctuation">(</span><span class="token function">atoi</span><span class="token punctuation">(</span>port<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    local<span class="token punctuation">.</span>sin_addr<span class="token punctuation">.</span>s_addr <span class="token operator">=</span> <span class="token function">inet_addr</span><span class="token punctuation">(</span>ip<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 绑定，使sock套接字与创建的地址local相关联</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">bind</span><span class="token punctuation">(</span>sock<span class="token punctuation">,</span> <span class="token punctuation">(</span>sockaddr <span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>local<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>local<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"bind error"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"bind success"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token comment">// listen函数使主动连接的sock变为等待用户连接的被动型</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">listen</span><span class="token punctuation">(</span>sock<span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"listen error"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"listen success"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> sock<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
 
-int setNoblock(int sock)
-&#123;
-    &#x2F;&#x2F; 获得文件状态
-    int fileState &#x3D; fcntl(sock, F_GETFL);
-    &#x2F;&#x2F; 通过位运算追加一个非阻塞的选项
-    return fcntl(sock, F_SETFL, fileState | O_NONBLOCK);
-&#125;
+<span class="token keyword">int</span> <span class="token function">setNoblock</span><span class="token punctuation">(</span><span class="token keyword">int</span> sock<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 获得文件状态</span>
+    <span class="token keyword">int</span> fileState <span class="token operator">=</span> <span class="token function">fcntl</span><span class="token punctuation">(</span>sock<span class="token punctuation">,</span> F_GETFL<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 通过位运算追加一个非阻塞的选项</span>
+    <span class="token keyword">return</span> <span class="token function">fcntl</span><span class="token punctuation">(</span>sock<span class="token punctuation">,</span> F_SETFL<span class="token punctuation">,</span> fileState <span class="token operator">|</span> O_NONBLOCK<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
 
-int main(int argc, char const *argv[])
-&#123;
-    &#x2F;&#x2F; if (argc !&#x3D; 3)
-    &#x2F;&#x2F; &#123;
-    &#x2F;&#x2F;     std::cout &lt;&lt; &quot;请输入ip和端口&quot; &lt;&lt; std::endl;
-    &#x2F;&#x2F;     exit(1);
-    &#x2F;&#x2F; &#125;
-    int listenSock &#x3D; createSocket(&quot;0.0.0.0&quot;, &quot;9090&quot;);
-    &#x2F;&#x2F; 第一步：创建epoll_fd对象
-    &#x2F;&#x2F; 生成epoll专用的文件描述符，理解为在内核申请一个空间，用来存放想关注的sock_fd上发生了什么事件
-    int epollFd &#x3D; epoll_create(256);
-    if (epollFd &lt; 0)
-    &#123;
-        std::cout &lt;&lt; &quot;epollFd 创建失败&quot; &lt;&lt; std::endl;
-        exit(1);
-    &#125;
-    std::cout &lt;&lt; &quot;epollFd 创建成功&quot; &lt;&lt; std::endl;
-    &#x2F;&#x2F; 第二步：设置epoll_event对象
-    epoll_event epollEvent;
-    epollEvent.events &#x3D; EPOLLIN;     &#x2F;&#x2F;将当前句柄转化为一个输入事件
-    epollEvent.data.fd &#x3D; listenSock; &#x2F;&#x2F;理解为与事件相关的文件的描述符
-    &#x2F;&#x2F; 添加关心的事件
-    if (epoll_ctl(epollFd, EPOLL_CTL_ADD, listenSock, &amp;epollEvent) &lt; 0)
-    &#123;
-        std::cout &lt;&lt; &quot;添加关心事件失败&quot; &lt;&lt; std::endl;
-        exit(1);
-    &#125;
-    &#x2F;&#x2F; 定义用来保存就绪事件的数组
-    epoll_event readyEvent[128];
-    memset(readyEvent, 0, sizeof(readyEvent));
-    int maxNum &#x3D; 128;   &#x2F;&#x2F; 就绪数组的最大值
-    int timeOut &#x3D; 1000; &#x2F;&#x2F; 超时时间
-    int ret &#x3D; 0;        &#x2F;&#x2F; 返回值
-    while (1)
-    &#123;
-        switch (ret &#x3D; epoll_wait(epollFd, readyEvent, maxNum, timeOut))
-        &#123;
-        case -1:
-            std::cout &lt;&lt; &quot;epoll_wait.......&quot; &lt;&lt; std::endl;
-            break;
-        case 0:
-            std::cout &lt;&lt; &quot;time_out.........&quot; &lt;&lt; std::endl;
-            break;
-        default:
-        &#123;
-            &#x2F;&#x2F; 至少有一个事件就绪
-            int i &#x3D; 0;
-            for (; i &lt; ret; ++i)
-            &#123;
-                &#x2F;&#x2F; 从wait阻塞等待时返回的ready_ev数组中的fd
-                int fd &#x3D; readyEvent[i].data.fd;
-                &#x2F;&#x2F; 判断fd是哪个句柄，是什么事件(fd为listenSock且是输入事件)
-                if ((fd &#x3D;&#x3D; listenSock) &amp;&amp; (readyEvent[i].events &#x3D;&#x3D; EPOLLIN))
-                &#123;
-                    &#x2F;&#x2F;第一次意味着有客户端连接进来
-                    sockaddr_in remote;
-                    socklen_t len &#x3D; sizeof(remote);
-                    int acceptSock &#x3D; accept(listenSock, (sockaddr *)&amp;remote, &amp;len);
-                    if (acceptSock &lt; 0)
-                    &#123;
-                        std::cout &lt;&lt; &quot;accept error&quot; &lt;&lt; std::endl;
-                        continue;
-                    &#125;
-                    printf(&quot;accept a client .. [ip]: %s,[port]:%d\n&quot;,
-                           inet_ntoa(remote.sin_addr), ntohs(remote.sin_port));
-                    &#x2F;&#x2F; 将新的事件添加到epoll事件里
-                    epollEvent.events &#x3D; EPOLLIN | EPOLLET; &#x2F;&#x2F;设置了边缘触发
-                    epollEvent.data.fd &#x3D; acceptSock;
-                    setNoblock(acceptSock); &#x2F;&#x2F; 把当前选项设置为非阻塞
-                    if (epoll_ctl(epollFd, EPOLL_CTL_ADD, acceptSock, &amp;epollEvent) &lt; 0)
-                    &#123;
-                        std::cout &lt;&lt; &quot;epoll_ctl 失败&quot; &lt;&lt; std::endl;
-                        close(acceptSock);
-                    &#125;
-                &#125;
-                else
-                &#123;
-                    &#x2F;&#x2F; 普通的IO(连接句柄的输入了)
-                    if (readyEvent[i].events &#x3D;&#x3D; EPOLLIN)
-                    &#123;
-                        &#x2F;&#x2F; 表示对端发送消息过来了
-                        char buf[1024];
-                        memset(buf, 0, sizeof(buf));
-                        int ret &#x3D; recv(fd, buf, sizeof(buf) - 1, 0);
-                        if (ret &lt; 0)
-                        &#123;
-                            std::cout &lt;&lt; &quot;recv error&quot; &lt;&lt; std::endl;
-                            continue;
-                        &#125;
-                        else if (ret &#x3D;&#x3D; 0)
-                        &#123;
-                            std::cout &lt;&lt; &quot;remote close...&quot; &lt;&lt; std::endl;
-                            epoll_ctl(epollFd, EPOLL_CTL_DEL, fd, NULL);
-                            close(fd);
-                        &#125;
-                        else
-                        &#123;
-                            &#x2F;&#x2F; 读取成功，输出数据
-                            std::cout &lt;&lt; &quot;client : &quot; &lt;&lt; buf &lt;&lt; std::endl;
-                            &#x2F;&#x2F; 把事件写入输出事件，输入事件完成了
-                            epollEvent.data.fd &#x3D; fd;
-                            epollEvent.events &#x3D; EPOLLOUT | EPOLLET;
-                            epoll_ctl(epollFd, EPOLL_CTL_MOD, fd, &amp;epollEvent);
-                            std::cout &lt;&lt; &quot;事件修改成功&quot; &lt;&lt; std::endl;
-                        &#125;
-                    &#125;
-                    else if (readyEvent[i].events &#x3D;&#x3D; EPOLLOUT)
-                    &#123;
-                        std::cout &lt;&lt; &quot;正在准备发送...&quot; &lt;&lt; std::endl;
-                        const char *msg &#x3D; &quot;HTTP&#x2F;1.1 200 OK \r\n\r\n&lt;h1&gt; hello message &lt;&#x2F;h1&gt;\r\n&quot;;
-                        if (send(fd, msg, strlen(msg), 0) &lt; 0)
-                        &#123;
-                            std::cout &lt;&lt; &quot;发送失败&quot; &lt;&lt; std::endl;
-                        &#125;
-                        epoll_ctl(epollFd, EPOLL_CTL_DEL, fd, NULL);
-                        close(fd);
-                    &#125;
-                &#125;
-            &#125;
-        &#125;
-        break;
-        &#125;
-    &#125;
-    close(listenSock);
-    return 0;
-&#125;
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token keyword">const</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// if (argc != 3)</span>
+    <span class="token comment">// &#123;</span>
+    <span class="token comment">//     std::cout &lt;&lt; "请输入ip和端口" &lt;&lt; std::endl;</span>
+    <span class="token comment">//     exit(1);</span>
+    <span class="token comment">// &#125;</span>
+    <span class="token keyword">int</span> listenSock <span class="token operator">=</span> <span class="token function">createSocket</span><span class="token punctuation">(</span><span class="token string">"0.0.0.0"</span><span class="token punctuation">,</span> <span class="token string">"9090"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 第一步：创建epoll_fd对象</span>
+    <span class="token comment">// 生成epoll专用的文件描述符，理解为在内核申请一个空间，用来存放想关注的sock_fd上发生了什么事件</span>
+    <span class="token keyword">int</span> epollFd <span class="token operator">=</span> <span class="token function">epoll_create</span><span class="token punctuation">(</span><span class="token number">256</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>epollFd <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"epollFd 创建失败"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"epollFd 创建成功"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token comment">// 第二步：设置epoll_event对象</span>
+    epoll_event epollEvent<span class="token punctuation">;</span>
+    epollEvent<span class="token punctuation">.</span>events <span class="token operator">=</span> EPOLLIN<span class="token punctuation">;</span>     <span class="token comment">//将当前句柄转化为一个输入事件</span>
+    epollEvent<span class="token punctuation">.</span>data<span class="token punctuation">.</span>fd <span class="token operator">=</span> listenSock<span class="token punctuation">;</span> <span class="token comment">//理解为与事件相关的文件的描述符</span>
+    <span class="token comment">// 添加关心的事件</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">epoll_ctl</span><span class="token punctuation">(</span>epollFd<span class="token punctuation">,</span> EPOLL_CTL_ADD<span class="token punctuation">,</span> listenSock<span class="token punctuation">,</span> <span class="token operator">&amp;</span>epollEvent<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"添加关心事件失败"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// 定义用来保存就绪事件的数组</span>
+    epoll_event readyEvent<span class="token punctuation">[</span><span class="token number">128</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">memset</span><span class="token punctuation">(</span>readyEvent<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>readyEvent<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> maxNum <span class="token operator">=</span> <span class="token number">128</span><span class="token punctuation">;</span>   <span class="token comment">// 就绪数组的最大值</span>
+    <span class="token keyword">int</span> timeOut <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span> <span class="token comment">// 超时时间</span>
+    <span class="token keyword">int</span> ret <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>        <span class="token comment">// 返回值</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">switch</span> <span class="token punctuation">(</span>ret <span class="token operator">=</span> <span class="token function">epoll_wait</span><span class="token punctuation">(</span>epollFd<span class="token punctuation">,</span> readyEvent<span class="token punctuation">,</span> maxNum<span class="token punctuation">,</span> timeOut<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+        <span class="token keyword">case</span> <span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span>
+            std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"epoll_wait......."</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> <span class="token number">0</span><span class="token operator">:</span>
+            std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"time_out........."</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">default</span><span class="token operator">:</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token comment">// 至少有一个事件就绪</span>
+            <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> ret<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+            <span class="token punctuation">&#123;</span>
+                <span class="token comment">// 从wait阻塞等待时返回的ready_ev数组中的fd</span>
+                <span class="token keyword">int</span> fd <span class="token operator">=</span> readyEvent<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>data<span class="token punctuation">.</span>fd<span class="token punctuation">;</span>
+                <span class="token comment">// 判断fd是哪个句柄，是什么事件(fd为listenSock且是输入事件)</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>fd <span class="token operator">==</span> listenSock<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>readyEvent<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>events <span class="token operator">==</span> EPOLLIN<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">&#123;</span>
+                    <span class="token comment">//第一次意味着有客户端连接进来</span>
+                    sockaddr_in remote<span class="token punctuation">;</span>
+                    socklen_t len <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>remote<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">int</span> acceptSock <span class="token operator">=</span> <span class="token function">accept</span><span class="token punctuation">(</span>listenSock<span class="token punctuation">,</span> <span class="token punctuation">(</span>sockaddr <span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>remote<span class="token punctuation">,</span> <span class="token operator">&amp;</span>len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>acceptSock <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                    <span class="token punctuation">&#123;</span>
+                        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"accept error"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+                        <span class="token keyword">continue</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">&#125;</span>
+                    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"accept a client .. [ip]: %s,[port]:%d\n"</span><span class="token punctuation">,</span>
+                           <span class="token function">inet_ntoa</span><span class="token punctuation">(</span>remote<span class="token punctuation">.</span>sin_addr<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">ntohs</span><span class="token punctuation">(</span>remote<span class="token punctuation">.</span>sin_port<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token comment">// 将新的事件添加到epoll事件里</span>
+                    epollEvent<span class="token punctuation">.</span>events <span class="token operator">=</span> EPOLLIN <span class="token operator">|</span> EPOLLET<span class="token punctuation">;</span> <span class="token comment">//设置了边缘触发</span>
+                    epollEvent<span class="token punctuation">.</span>data<span class="token punctuation">.</span>fd <span class="token operator">=</span> acceptSock<span class="token punctuation">;</span>
+                    <span class="token function">setNoblock</span><span class="token punctuation">(</span>acceptSock<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 把当前选项设置为非阻塞</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">epoll_ctl</span><span class="token punctuation">(</span>epollFd<span class="token punctuation">,</span> EPOLL_CTL_ADD<span class="token punctuation">,</span> acceptSock<span class="token punctuation">,</span> <span class="token operator">&amp;</span>epollEvent<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                    <span class="token punctuation">&#123;</span>
+                        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"epoll_ctl 失败"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+                        <span class="token function">close</span><span class="token punctuation">(</span>acceptSock<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">&#125;</span>
+                <span class="token punctuation">&#125;</span>
+                <span class="token keyword">else</span>
+                <span class="token punctuation">&#123;</span>
+                    <span class="token comment">// 普通的IO(连接句柄的输入了)</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>readyEvent<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>events <span class="token operator">==</span> EPOLLIN<span class="token punctuation">)</span>
+                    <span class="token punctuation">&#123;</span>
+                        <span class="token comment">// 表示对端发送消息过来了</span>
+                        <span class="token keyword">char</span> buf<span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+                        <span class="token function">memset</span><span class="token punctuation">(</span>buf<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token keyword">int</span> ret <span class="token operator">=</span> <span class="token function">recv</span><span class="token punctuation">(</span>fd<span class="token punctuation">,</span> buf<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token keyword">if</span> <span class="token punctuation">(</span>ret <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                        <span class="token punctuation">&#123;</span>
+                            std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"recv error"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+                            <span class="token keyword">continue</span><span class="token punctuation">;</span>
+                        <span class="token punctuation">&#125;</span>
+                        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>ret <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                        <span class="token punctuation">&#123;</span>
+                            std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"remote close..."</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+                            <span class="token function">epoll_ctl</span><span class="token punctuation">(</span>epollFd<span class="token punctuation">,</span> EPOLL_CTL_DEL<span class="token punctuation">,</span> fd<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            <span class="token function">close</span><span class="token punctuation">(</span>fd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token punctuation">&#125;</span>
+                        <span class="token keyword">else</span>
+                        <span class="token punctuation">&#123;</span>
+                            <span class="token comment">// 读取成功，输出数据</span>
+                            std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"client : "</span> <span class="token operator">&lt;&lt;</span> buf <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+                            <span class="token comment">// 把事件写入输出事件，输入事件完成了</span>
+                            epollEvent<span class="token punctuation">.</span>data<span class="token punctuation">.</span>fd <span class="token operator">=</span> fd<span class="token punctuation">;</span>
+                            epollEvent<span class="token punctuation">.</span>events <span class="token operator">=</span> EPOLLOUT <span class="token operator">|</span> EPOLLET<span class="token punctuation">;</span>
+                            <span class="token function">epoll_ctl</span><span class="token punctuation">(</span>epollFd<span class="token punctuation">,</span> EPOLL_CTL_MOD<span class="token punctuation">,</span> fd<span class="token punctuation">,</span> <span class="token operator">&amp;</span>epollEvent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"事件修改成功"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+                        <span class="token punctuation">&#125;</span>
+                    <span class="token punctuation">&#125;</span>
+                    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>readyEvent<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>events <span class="token operator">==</span> EPOLLOUT<span class="token punctuation">)</span>
+                    <span class="token punctuation">&#123;</span>
+                        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"正在准备发送..."</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+                        <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>msg <span class="token operator">=</span> <span class="token string">"HTTP/1.1 200 OK \r\n\r\n&lt;h1> hello message &lt;/h1>\r\n"</span><span class="token punctuation">;</span>
+                        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">send</span><span class="token punctuation">(</span>fd<span class="token punctuation">,</span> msg<span class="token punctuation">,</span> <span class="token function">strlen</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                        <span class="token punctuation">&#123;</span>
+                            std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"发送失败"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+                        <span class="token punctuation">&#125;</span>
+                        <span class="token function">epoll_ctl</span><span class="token punctuation">(</span>epollFd<span class="token punctuation">,</span> EPOLL_CTL_DEL<span class="token punctuation">,</span> fd<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token function">close</span><span class="token punctuation">(</span>fd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">&#125;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">close</span><span class="token punctuation">(</span>listenSock<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
@@ -1633,7 +1633,7 @@ int main(int argc, char const *argv[])
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">17.1k</span>
+                        class="white-color">16.7k</span>
             
             
             
