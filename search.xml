@@ -8,7 +8,7 @@
       <link href="/2022/02/05/kmp%E7%AE%97%E6%B3%95/"/>
       <url>/2022/02/05/kmp%E7%AE%97%E6%B3%95/</url>
       
-        <content type="html"><![CDATA[<h2 id="前缀表"><a href="#前缀表" class="headerlink" title="前缀表"></a>前缀表</h2><p><img src="https://s2.loli.net/2022/02/05/I24bWtfoJVNevhn.jpg"><br>前缀表的值来自于需要匹配的字符串的0~n的子串，从前面数x位和从后面数x位的子串相等，那么该值就为x，否则为0<br>如图，字符串ababc的字串分别为：</p><pre class="line-numbers language-none"><code class="language-none">a       首位值定义为0ab      a!&#x3D;b，所以值为0aba     向前1位，和向后1位都是a，所以值为1abab    向前2位，和向后2位都是ab，所以值为2ababc   a!&#x3D;c，所以值为0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>所以该子串的前缀表为<strong>00120</strong><br>为了后面方便使用，此时需要将前缀表右移一位，左边补上-1，即 <strong>-1 0 0 1 2 0</strong></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="前缀表"><a href="#前缀表" class="headerlink" title="前缀表"></a>前缀表</h2><p><img src="https://s2.loli.net/2022/02/05/I24bWtfoJVNevhn.jpg"><br>前缀表的值来自于需要匹配的字符串的0~n的子串，从前面数x位和从后面数x位的子串相等，那么该值就为x，否则为0<br>如图，字符串ababc的字串分别为：</p><pre class="line-numbers language-none"><code class="language-none">a       首位值定义为0ab      a!&#x3D;b，所以值为0aba     向前1位，和向后1位都是a，所以值为1abab    向前2位，和向后2位都是ab，所以值为2ababc   a!&#x3D;c，所以值为0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>所以该子串的前缀表为<strong>00120</strong><br>为了后面方便使用，此时需要将前缀表右移一位，左边补上-1，即 <strong>-1 0 0 1 2 0</strong></p><h2 id="前缀表c-实现"><a href="#前缀表c-实现" class="headerlink" title="前缀表c++实现"></a>前缀表c++实现</h2><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">kmpPrefixTable</span><span class="token punctuation">(</span>string str<span class="token punctuation">,</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> prefix<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>    <span class="token keyword">int</span> len <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>    prefix<span class="token punctuation">.</span><span class="token function">resize</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    prefix<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>    <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>    <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> str<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>    <span class="token punctuation">&#123;</span>        <span class="token keyword">if</span> <span class="token punctuation">(</span>str<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> str<span class="token punctuation">[</span>len<span class="token punctuation">]</span><span class="token punctuation">)</span>        <span class="token punctuation">&#123;</span>            prefix<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token operator">++</span>len<span class="token punctuation">;</span>            i<span class="token operator">++</span><span class="token punctuation">;</span>        <span class="token punctuation">&#125;</span>        <span class="token keyword">else</span>        <span class="token punctuation">&#123;</span>            <span class="token keyword">if</span> <span class="token punctuation">(</span>len <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span>            <span class="token punctuation">&#123;</span>                len <span class="token operator">=</span> prefix<span class="token punctuation">[</span>len <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>            <span class="token punctuation">&#125;</span>            <span class="token keyword">else</span>            <span class="token punctuation">&#123;</span>                prefix<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>                i<span class="token operator">++</span><span class="token punctuation">;</span>            <span class="token punctuation">&#125;</span>        <span class="token punctuation">&#125;</span>    <span class="token punctuation">&#125;</span>    prefix<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>prefix<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    prefix<span class="token punctuation">.</span><span class="token function">pop_back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><strong>原理</strong>：len初始为0，</p>]]></content>
       
       
       <categories>
@@ -228,6 +228,31 @@
     
     
     <entry>
+      <title>c语言位运算</title>
+      <link href="/2021/12/08/c%E8%AF%AD%E8%A8%80%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
+      <url>/2021/12/08/c%E8%AF%AD%E8%A8%80%E4%BD%8D%E8%BF%90%E7%AE%97/</url>
+      
+        <content type="html"><![CDATA[<h2 id="c语言位运算"><a href="#c语言位运算" class="headerlink" title="c语言位运算"></a>c语言位运算</h2><p><strong>如果有错误出现，欢迎指出</strong></p><p>此内容知识和图片来源：<a href="https://www.bilibili.com/video/BV1pN411Q7et?from=search&amp;seid=13105223701786752559&amp;spm_id_from=333.337.0.0">https://www.bilibili.com/video/BV1pN411Q7et?from=search&amp;seid=13105223701786752559&amp;spm_id_from=333.337.0.0</a></p><p><strong>如图所示为&amp;位运算，其运算过程为全1为1，有0出0，如图所示中a&amp;b=十进制中的2和二进制中的0010</strong></p><p><img src="https://img-blog.csdnimg.cn/bfe5d59fed174b1a9629ae7d59cff2dd.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"></p><p><strong>如图所示为|运算，有1出1，全0为0</strong><br><img src="https://img-blog.csdnimg.cn/7a4ad2df13fa47f18415a9ced3480bd4.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_18,color_FFFFFF,t_70,g_se,x_16"></p><p><strong>如图为异或运算，两个数相同则为0，但是一个非0的数与0的异或结果为该数字本身</strong></p><p><img src="https://img-blog.csdnimg.cn/32e0a3ab5d814f9897985d4fbfca52f0.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_19,color_FFFFFF,t_70,g_se,x_16"></p><p><strong>如图为按位取反运算</strong></p><p><img src="https://img-blog.csdnimg.cn/31d95d15af3741a987a169dc095438c3.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_18,color_FFFFFF,t_70,g_se,x_16"></p><p><strong>如图为左移运算，将二进制向左移动指定的位数然后丢弃，后面用0补上，实际上，指定的左移数就是指定原数乘以几个2</strong></p><p><img src="https://img-blog.csdnimg.cn/42eb93a39ed24cf1b345e1c1e5ab8629.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"></p><p><strong>右移与左移同理，只是指定右移几位，就是除以几个2</strong></p><p><img src="https://img-blog.csdnimg.cn/0df023013695476493186e252b750821.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> c </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> c </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Linux学习(二):makefile</title>
       <link href="/2021/12/08/Linux%E5%AD%A6%E4%B9%A0(%E4%BA%8C)%EF%BC%9Amakefile/"/>
       <url>/2021/12/08/Linux%E5%AD%A6%E4%B9%A0(%E4%BA%8C)%EF%BC%9Amakefile/</url>
@@ -274,31 +299,6 @@
             <tag> c </tag>
             
             <tag> Linux </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>c语言位运算</title>
-      <link href="/2021/12/08/c%E8%AF%AD%E8%A8%80%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
-      <url>/2021/12/08/c%E8%AF%AD%E8%A8%80%E4%BD%8D%E8%BF%90%E7%AE%97/</url>
-      
-        <content type="html"><![CDATA[<h2 id="c语言位运算"><a href="#c语言位运算" class="headerlink" title="c语言位运算"></a>c语言位运算</h2><p><strong>如果有错误出现，欢迎指出</strong></p><p>此内容知识和图片来源：<a href="https://www.bilibili.com/video/BV1pN411Q7et?from=search&amp;seid=13105223701786752559&amp;spm_id_from=333.337.0.0">https://www.bilibili.com/video/BV1pN411Q7et?from=search&amp;seid=13105223701786752559&amp;spm_id_from=333.337.0.0</a></p><p><strong>如图所示为&amp;位运算，其运算过程为全1为1，有0出0，如图所示中a&amp;b=十进制中的2和二进制中的0010</strong></p><p><img src="https://img-blog.csdnimg.cn/bfe5d59fed174b1a9629ae7d59cff2dd.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"></p><p><strong>如图所示为|运算，有1出1，全0为0</strong><br><img src="https://img-blog.csdnimg.cn/7a4ad2df13fa47f18415a9ced3480bd4.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_18,color_FFFFFF,t_70,g_se,x_16"></p><p><strong>如图为异或运算，两个数相同则为0，但是一个非0的数与0的异或结果为该数字本身</strong></p><p><img src="https://img-blog.csdnimg.cn/32e0a3ab5d814f9897985d4fbfca52f0.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_19,color_FFFFFF,t_70,g_se,x_16"></p><p><strong>如图为按位取反运算</strong></p><p><img src="https://img-blog.csdnimg.cn/31d95d15af3741a987a169dc095438c3.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_18,color_FFFFFF,t_70,g_se,x_16"></p><p><strong>如图为左移运算，将二进制向左移动指定的位数然后丢弃，后面用0补上，实际上，指定的左移数就是指定原数乘以几个2</strong></p><p><img src="https://img-blog.csdnimg.cn/42eb93a39ed24cf1b345e1c1e5ab8629.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"></p><p><strong>右移与左移同理，只是指定右移几位，就是除以几个2</strong></p><p><img src="https://img-blog.csdnimg.cn/0df023013695476493186e252b750821.png?type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ams6LiP6aOe54eVMjMzMw==,size_20,color_FFFFFF,t_70,g_se,x_16"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> c </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> c </tag>
             
         </tags>
       
